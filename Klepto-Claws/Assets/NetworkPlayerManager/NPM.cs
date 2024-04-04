@@ -5,19 +5,51 @@ using NETWORK_ENGINE;
 
 public class NPM : NetworkComponent
 {
+
+    public bool IsReady;
+
     public override void HandleMessage(string flag, string value)
     {
-        throw new System.NotImplementedException();
+        if (flag == "READY")
+        {
+            IsReady = bool.Parse(value);
+            if (IsServer)
+            {
+                SendUpdate("READY", value);
+            }
+        }
     }
 
     public override void NetworkedStart()
     {
-        throw new System.NotImplementedException();
+        if (!IsLocalPlayer)
+        {
+            this.transform.GetChild(0).gameObject.SetActive(false);
+        }
     }
 
     public override IEnumerator SlowUpdate()
     {
-        throw new System.NotImplementedException();
+        while (IsConnected)
+        {
+            if (IsServer)
+            {
+
+                if (IsDirty)
+                {
+
+                    IsDirty = false;
+                }
+            }
+            yield return new WaitForSeconds(.1f);
+        }
+    }
+    public void UI_Ready(bool r)
+    {
+        if (IsLocalPlayer)
+        {
+            SendCommand("READY", r.ToString());
+        }
     }
 
     // Start is called before the first frame update
