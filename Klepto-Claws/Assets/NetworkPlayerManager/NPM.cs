@@ -50,7 +50,6 @@ public class NPM : NetworkComponent
             }
             yield return new WaitForSeconds(.1f);
         }
-        throw new System.NotImplementedException();
     }
 
     // Start is called before the first frame update
