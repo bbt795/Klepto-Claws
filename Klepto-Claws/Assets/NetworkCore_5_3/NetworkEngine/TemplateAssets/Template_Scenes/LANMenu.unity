@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -546,7 +546,6 @@ GameObject:
   m_Component:
   - component: {fileID: 408156394}
   - component: {fileID: 408156393}
-  - component: {fileID: 408156395}
   m_Layer: 0
   m_Name: LanNetworkManager
   m_TagString: Untagged
@@ -603,39 +602,6 @@ Transform:
   - {fileID: 1128954964}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &408156395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 408156392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7020f07cd7076e7448674855f642fd33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OutputConsole: {fileID: 0}
-  MaxConsoleLogSize: 1024
-  UsingUDP: 0
-  IsListening: 0
-  IsServer: 0
-  IsClient: 0
-  IsConnected: 0
-  AppNumber: 0
-  conCounter: 0
-  IP: 
-  PortNumber: 0
-  MaxConnections: 0
-  MasterTimer: 0.05
-  LocalConnectionID: -10
-  CycleTrigger: 3
-  UseMenuManager: 1
-  DisconnectScreen: {fileID: 0}
-  ObjectCounter: 0
-  SpawnPrefab: []
-  NetworkPlayerManager: {fileID: 0}
-  DefaultReturnScene: 0
 --- !u!1 &412463424
 GameObject:
   m_ObjectHideFlags: 0
