@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/NetworkCore_5_3/NetworkEngine/TemplateAssets/Template_Scenes/MainMenu.unity
+    guid: ab2cf8a781261f04bb0b2a1aba774eac
+  - enabled: 1
+    path: Assets/NetworkCore_5_3/NetworkEngine/TemplateAssets/Template_Scenes/WAN_Game.unity
+    guid: da03a7296a403da4e9db8de3d45e0ae1
+  - enabled: 1
+    path: Assets/NetworkCore_5_3/NetworkEngine/TemplateAssets/Template_Scenes/LANMenu.unity
+    guid: dac71191a8fe783458175a8b578613ae
   m_configObjects: {}
