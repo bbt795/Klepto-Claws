@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using NETWORK_ENGINE;
 
 public class NPM : NetworkComponent
 {
     public bool IsReady;
+    public float MoneyCollected;
+
+    public TextMeshProUGUI tmpObject;
+
     public override void HandleMessage(string flag, string value)
     {
         if(flag == "READY")
@@ -15,6 +20,20 @@ public class NPM : NetworkComponent
             if(IsServer)
             {
                 SendUpdate("READY", value);
+            }
+        }
+        if(flag == "MONEY")
+        {
+            MoneyCollected = float.Parse(value);
+            if(IsServer)
+            {
+                //tmpObject.text = "Money Collected: " + value;
+                tmpObject.text = "Money Collected: " + MoneyCollected;
+                SendUpdate("MONEY", value.ToString());
+            }
+            if(IsClient)
+            {
+                tmpObject.text = "Money Collected: " + float.Parse(value);
             }
         }
         //throw new System.NotImplementedException();
@@ -26,6 +45,11 @@ public class NPM : NetworkComponent
         {
             SendCommand("READY", r.ToString());
         }
+    }
+
+    public void UI_Money(float money)
+    {
+        SendCommand("MONEY", money.ToString());
     }
 
     public override void NetworkedStart()
@@ -45,6 +69,7 @@ public class NPM : NetworkComponent
             {
                 if(IsDirty)
                 {
+                    SendUpdate("MONEY", MoneyCollected.ToString());
                     IsDirty = false;
                 }
             }
