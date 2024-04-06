@@ -6,6 +6,9 @@ using NETWORK_ENGINE;
 public class GameMaster : NetworkComponent
 {
     public bool GameStarted = false;
+    public bool GameEnd = false;
+
+    public float MoneyStolen;
     public override void HandleMessage(string flag, string value)
     {   
         if(flag == "GAMESTART")
@@ -14,12 +17,30 @@ public class GameMaster : NetworkComponent
             GameStarted = true;
             foreach(NPM np in GameObject.FindObjectsOfType<NPM>())
             {
-                np.transform.GetChild(0).gameObject.SetActive(false);
+                np.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                //np.transform.GetChild(0).gameObject.SetActive(false);
             }
+        }
+        if(flag == "GAMEEND")
+        {
+            GameEnd = true;
+            StartCoroutine(StartGameEnd());
         }
     }
     public override void NetworkedStart()
     {
+        MoneyStolen = 5.88f;
+    }
+
+    public IEnumerator StartGameEnd()
+    {
+        yield return new WaitForSeconds(5);
+        foreach(NPM np in GameObject.FindObjectsOfType<NPM>())
+        {
+            //np.transform.GetChild(0).gameObject.SetActive(true);
+            np.UI_Money(MoneyStolen);
+            np.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+        }
 
     }
     public override IEnumerator SlowUpdate()
@@ -50,6 +71,7 @@ public class GameMaster : NetworkComponent
             //Wait
 
             SendUpdate("GAMESTART", GameStarted.ToString()); 
+            SendUpdate("GAMEEND", GameEnd.ToString());
 
             //Go to each NetworkPlayerManager and look at their options
             //Create the appropriate character for their options
@@ -63,6 +85,7 @@ public class GameMaster : NetworkComponent
             if(IsDirty)
             {
                 SendUpdate("GAMESTART", GameStarted.ToString());
+                SendUpdate("GAMEEND", GameEnd.ToString());
                 IsDirty = false;
             }
             yield return new WaitForSeconds(1);
