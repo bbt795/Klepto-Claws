@@ -10,8 +10,8 @@ public class NPM : NetworkComponent
     public bool IsReady;
     public float MoneyCollected;
 
-    private int lobsterCount;
-    private int humanCount;
+    public static int lobsterCount;
+    public static int humanCount;
 
     public TextMeshProUGUI tmpObject;
     public Toggle humanToggle;
@@ -53,7 +53,13 @@ public class NPM : NetworkComponent
                 {
 
                     humanCount++;
-                    humanToggle.interactable = false;
+
+                    if(humanCount == 1)
+                    {
+
+                        humanToggle.interactable = false;
+
+                    }
 
                 } else
                 {
@@ -61,11 +67,17 @@ public class NPM : NetworkComponent
                     humanCount--;
                     //small logic error here when one player has lobster chosen, but then another player unchecks human, it would turn it back on for the lobster player
                     //will deal with later
-                    humanToggle.interactable = true;
+                    if(humanCount < 1)
+                    {
+
+                        humanToggle.interactable = true;
+
+                    }
 
                 }
 
                 SendUpdate("HTEAM", humanCount.ToString());
+                Debug.Log(humanCount);
 
             }
 
@@ -75,8 +87,10 @@ public class NPM : NetworkComponent
                 humanCount = int.Parse(value);
                 if (humanCount == 1)
                 {
-
-                    humanToggle.interactable = false;
+                    if (!humanToggle.isOn)
+                    {
+                        humanToggle.interactable = false;
+                    }
 
                 } else
                 {
@@ -125,7 +139,7 @@ public class NPM : NetworkComponent
                 }
 
                 SendUpdate("LTEAM", lobsterCount.ToString());
-
+                Debug.Log(lobsterCount);
             }
 
             if (IsClient)
@@ -200,6 +214,8 @@ public class NPM : NetworkComponent
                 if(IsDirty)
                 {
                     SendUpdate("MONEY", MoneyCollected.ToString());
+                    SendUpdate("HTEAM", humanCount.ToString());
+                    SendUpdate("LTEAM", lobsterCount.ToString());
                     IsDirty = false;
                 }
             }

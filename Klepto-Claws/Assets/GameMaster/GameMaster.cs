@@ -9,6 +9,9 @@ public class GameMaster : NetworkComponent
     public bool GameEnd = false;
 
     public float MoneyStolen;
+    public int humanCount;
+    public int lobsterCount;
+
     public override void HandleMessage(string flag, string value)
     {   
         if(flag == "GAMESTART")
@@ -58,7 +61,11 @@ public class GameMaster : NetworkComponent
                 }
                 count++;
             }
-            if(count <1)
+            if(count < 1)
+            {
+                readyGo = false;
+            }
+            if(NPM.humanCount != 1 && NPM.lobsterCount != 3)
             {
                 readyGo = false;
             }
