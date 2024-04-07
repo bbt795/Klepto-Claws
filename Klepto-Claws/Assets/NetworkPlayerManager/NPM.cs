@@ -10,7 +10,12 @@ public class NPM : NetworkComponent
     public bool IsReady;
     public float MoneyCollected;
 
+    private int lobsterCount;
+    private int humanCount;
+
     public TextMeshProUGUI tmpObject;
+    public Toggle humanToggle;
+    public Toggle lobsterToggle;
 
     public override void HandleMessage(string flag, string value)
     {
@@ -36,6 +41,115 @@ public class NPM : NetworkComponent
                 tmpObject.text = "Money Collected: " + float.Parse(value);
             }
         }
+
+        if(flag == "HTEAM")
+        {
+
+            if (IsServer)
+            {
+
+                bool toggleValue = bool.Parse(value);
+                if (toggleValue)
+                {
+
+                    humanCount++;
+                    humanToggle.interactable = false;
+
+                } else
+                {
+
+                    humanCount--;
+                    //small logic error here when one player has lobster chosen, but then another player unchecks human, it would turn it back on for the lobster player
+                    //will deal with later
+                    humanToggle.interactable = true;
+
+                }
+
+                SendUpdate("HTEAM", humanCount.ToString());
+
+            }
+
+            if (IsClient)
+            {
+
+                humanCount = int.Parse(value);
+                if (humanCount == 1)
+                {
+
+                    humanToggle.interactable = false;
+
+                } else
+                {
+
+                    humanToggle.interactable = true;
+
+                }
+
+            }
+
+        }
+
+        if (flag == "LTEAM")
+        {
+
+            if (IsServer)
+            {
+
+                bool toggleValue = bool.Parse(value);
+                if (toggleValue)
+                {
+
+                    lobsterCount++;
+
+                    if(lobsterCount == 3)
+                    {
+
+                        lobsterToggle.interactable = false;
+
+                    }
+
+                }
+                else
+                {
+
+                    lobsterCount--;
+
+                    //same potential logic issue as above
+                    if(lobsterCount < 3)
+                    {
+
+                        lobsterToggle.interactable = true;
+
+                    }
+
+                }
+
+                SendUpdate("LTEAM", lobsterCount.ToString());
+
+            }
+
+            if (IsClient)
+            {
+
+                lobsterCount = int.Parse(value);
+
+                if(lobsterCount == 3)
+                {
+
+                    lobsterToggle.interactable = false;
+
+                } else
+                {
+
+                    lobsterToggle.interactable = true;
+
+                }
+
+
+            }
+
+        }
+
         //throw new System.NotImplementedException();
     }
 
@@ -50,6 +164,22 @@ public class NPM : NetworkComponent
     public void UI_Money(float money)
     {
         SendCommand("MONEY", money.ToString());
+    }
+
+    public void UI_HumanTeam(bool team)
+    {
+
+        lobsterToggle.interactable = !team;
+        SendCommand("HTEAM",team.ToString());
+
+    }
+
+    public void UI_LobsterTeam(bool team)
+    {
+
+        humanToggle.interactable = !team;
+        SendCommand("LTEAM", team.ToString());
+
     }
 
     public override void NetworkedStart()
