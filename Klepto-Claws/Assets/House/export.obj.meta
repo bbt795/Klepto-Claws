@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: 20200907-191157-edt
+    second: {fileID: 2100000, guid: 41a773fa5cfd5cc409f1db8ed8c320b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: fake_mat_248_180_147_255
     second: {fileID: 2100000, guid: 2cb8e4b885e0d60439369269f390c611, type: 2}
   materials:
