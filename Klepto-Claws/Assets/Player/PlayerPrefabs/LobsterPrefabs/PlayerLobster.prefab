@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerLobster
       objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_TagString
+      value: Lobster
+      objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
       propertyPath: m_LocalPosition.x
       value: 35.539413
