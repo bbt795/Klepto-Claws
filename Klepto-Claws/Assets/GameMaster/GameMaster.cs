@@ -13,7 +13,7 @@ public class GameMaster : NetworkComponent
     public int lobsterCount;
 
     public List<Vector3> SpawnPoints;
-    public Vector3 CurrentSpawn1, CurrentSpawn2;
+    public Vector3 CurrentSpawn;
 
     public override void HandleMessage(string flag, string value)
     {   
@@ -90,29 +90,23 @@ public class GameMaster : NetworkComponent
 
             MyId.NotifyDirty();
 
-
-            int spawn1 = Random.Range(0, SpawnPoints.Count);
-            int spawn2 = Random.Range(0, SpawnPoints.Count);
-            CurrentSpawn1 = SpawnPoints[spawn1];
-            CurrentSpawn2 = SpawnPoints[spawn2];
-
             foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
             {
-                if(np.IsHuman == true)
+
+                int spawn = Random.Range(0, SpawnPoints.Count);
+                CurrentSpawn = SpawnPoints[spawn];
+
+                if (np.IsHuman == true)
                 {
-                    //GameObject spawn = GameObject.Find("SpawnPoint1");
-                    //Vector3 spawnPos = spawn.transform.position;
                     MyCore.NetCreateObject(
-                            1, np.Owner, CurrentSpawn1, Quaternion.identity
+                            1, np.Owner, CurrentSpawn, Quaternion.identity
                         );
                 }
 
                 if(np.IsLobster == true)
                 {
-                    //GameObject spawn = GameObject.Find("SpawnPoint2");
-                    //Vector3 spawnPos = spawn.transform.position;
                     MyCore.NetCreateObject(
-                            2, np.Owner, CurrentSpawn2, Quaternion.identity
+                            2, np.Owner, SpawnPoints[spawn++], Quaternion.identity
                         );
                 }
             }
