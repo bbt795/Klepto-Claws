@@ -13,6 +13,9 @@ public class NPM : NetworkComponent
     public static int lobsterCount;
     public static int humanCount;
 
+    public bool IsLobster;
+    public bool IsHuman;
+
     public TextMeshProUGUI tmpObject;
     public Toggle humanToggle;
     public Toggle lobsterToggle;
@@ -45,8 +48,11 @@ public class NPM : NetworkComponent
         if(flag == "HTEAM")
         {
 
+            IsHuman = bool.Parse(value);
+
             if (IsServer)
             {
+                SendUpdate("HTEAM", value);
 
                 bool toggleValue = bool.Parse(value);
                 if (toggleValue)
@@ -107,9 +113,10 @@ public class NPM : NetworkComponent
 
         if (flag == "LTEAM")
         {
-
+            IsLobster = bool.Parse(value);
             if (IsServer)
             {
+                SendUpdate("LTEAM", value);
 
                 bool toggleValue = bool.Parse(value);
                 if (toggleValue)
@@ -218,6 +225,9 @@ public class NPM : NetworkComponent
                     SendUpdate("MONEY", MoneyCollected.ToString());
                     SendUpdate("HTEAM", humanCount.ToString());
                     SendUpdate("LTEAM", lobsterCount.ToString());
+
+
+
                     IsDirty = false;
                 }
             }

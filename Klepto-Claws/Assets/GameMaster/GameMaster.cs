@@ -12,6 +12,9 @@ public class GameMaster : NetworkComponent
     public int humanCount;
     public int lobsterCount;
 
+    public List<Vector3> SpawnPoints;
+    public Vector3 CurrentSpawn;
+
     public override void HandleMessage(string flag, string value)
     {   
         if(flag == "GAMESTART")
@@ -86,6 +89,27 @@ public class GameMaster : NetworkComponent
             //temp.GetComponent<MyCharacterScript>().team = //set the team;
 
             MyId.NotifyDirty();
+
+            foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
+            {
+
+                int spawn = Random.Range(0, SpawnPoints.Count);
+                CurrentSpawn = SpawnPoints[spawn];
+
+                if (np.IsHuman == true)
+                {
+                    MyCore.NetCreateObject(
+                            1, np.Owner, CurrentSpawn, Quaternion.identity
+                        );
+                }
+
+                if(np.IsLobster == true)
+                {
+                    MyCore.NetCreateObject(
+                            2, np.Owner, SpawnPoints[spawn++], Quaternion.identity
+                        );
+                }
+            }
         }
         while(IsServer)
         {
@@ -104,6 +128,13 @@ public class GameMaster : NetworkComponent
     void Start()
     {
         GameStarted = false;
+
+        GameObject[] temp = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        SpawnPoints = new List<Vector3>();
+        foreach (GameObject g in temp)
+        {
+            SpawnPoints.Add(g.transform.position);
+        }
     }
 
     // Update is called once per frame
