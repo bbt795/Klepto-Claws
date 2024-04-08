@@ -218,6 +218,9 @@ public class NPM : NetworkComponent
                     SendUpdate("MONEY", MoneyCollected.ToString());
                     SendUpdate("HTEAM", humanCount.ToString());
                     SendUpdate("LTEAM", lobsterCount.ToString());
+
+
+
                     IsDirty = false;
                 }
             }
