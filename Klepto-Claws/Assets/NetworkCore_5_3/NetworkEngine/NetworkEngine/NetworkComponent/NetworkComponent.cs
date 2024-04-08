@@ -22,8 +22,8 @@ namespace NETWORK_ENGINE
             get { return MyCore.IsClient; }
         }
         public bool IsServer
-        {      
-                get { return MyCore.IsServer; }       
+        {
+            get { return MyCore.IsServer; }
         }
         public bool IsLocalPlayer
         {
@@ -50,20 +50,32 @@ namespace NETWORK_ENGINE
         {
             MyId = gameObject.GetComponent<NetworkID>();
 
-            if(MyId == null)
+            if (MyId == null)
             {
                 throw new System.Exception("ERROR: There is no network ID on this object");
+            }
+            if (!MyId.UseLobby)
+            {
+                MyCore = GameObject.FindObjectOfType<NetworkCore>();
+            }
+            else
+            {
+                MyCore = GameObject.FindObjectOfType<LobbyManager2>();
+            }
+            if (MyCore == null)
+            {
+                throw new System.Exception("There is no network core in the scene!");
             }
             StartCoroutine(SlowStart());
         }
         void Start()
         {
-         
+
         }
         IEnumerator SlowStart()
         {
             yield return new WaitUntil(() => MyId.IsInit);
-            MyCore = MyId.MyCore;
+            //MyCore = MyId.MyCore;
             if (MyCore == null)
             {
                 throw new System.Exception("ERROR: There is no network core on the scene.");
@@ -81,16 +93,16 @@ namespace NETWORK_ENGINE
             value = value.Replace('#', ' ');
             value = value.Replace('\n', ' ');
             if (MyCore != null && MyCore.IsClient && IsLocalPlayer)
-            {    
+            {
                 if (useTcp)
                 {
                     string msg = "COMMAND#" + MyId.NetId + "#" + var + "#" + value;
-                    MyId.AddMsg(msg,var, useTcp);
+                    MyId.AddMsg(msg, var, useTcp);
                 }
                 else if (!useTcp && MyId.UDPGameObjectMessages.Str.Contains(var) == false)
                 {
                     string msg = "COMMAND#" + MyId.NetId + "#" + var + "#" + value;
-                    MyId.AddMsg(msg,var, useTcp);
+                    MyId.AddMsg(msg, var, useTcp);
                 }
             }
         }
@@ -100,18 +112,18 @@ namespace NETWORK_ENGINE
             var = var.Replace('\n', ' ');
             value = value.Replace('#', ' ');
             value = value.Replace('\n', ' ');
-            if (MyCore != null && MyCore.IsServer )
+            if (MyCore != null && MyCore.IsServer)
             {
-               
-                if ( useTcp)
+
+                if (useTcp)
                 {
                     string msg = "UPDATE#" + MyId.NetId + "#" + var + "#" + value;
-                    MyId.AddMsg(msg,var, useTcp);
+                    MyId.AddMsg(msg, var, useTcp);
                 }
-                else if (!useTcp && MyId.UDPGameObjectMessages.Str.Contains(var) == false )
+                else if (!useTcp && MyId.UDPGameObjectMessages.Str.Contains(var) == false)
                 {
                     string msg = "UPDATE#" + MyId.NetId + "#" + var + "#" + value;
-                    MyId.AddMsg(msg,var, useTcp);
+                    MyId.AddMsg(msg, var, useTcp);
                 }
             }
         }
