@@ -86,6 +86,18 @@ public class GameMaster : NetworkComponent
             //temp.GetComponent<MyCharacterScript>().team = //set the team;
 
             MyId.NotifyDirty();
+
+            foreach(NPM np in GameObject.FindObjectsOfType<NPM>())
+            {
+                if(np.IsHuman == true)
+                {
+                    GameObject spawn = GameObject.Find("SpawnPoint1");
+                    Vector3 spawnPos = spawn.transform.position;
+                    MyCore.NetCreateObject(
+                            1, np.Owner, spawnPos, Quaternion.identity
+                        );
+                }
+            }
         }
         while(IsServer)
         {
