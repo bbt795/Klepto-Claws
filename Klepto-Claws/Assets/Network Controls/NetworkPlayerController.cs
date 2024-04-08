@@ -8,8 +8,8 @@ using UnityEngine.InputSystem;
 
 public class NetworkPlayerController : NetworkComponent
 {
-    public Material[] SkeletonMatArray;
-    public Renderer SkeletonRenderer;
+    public Material[] PlayerMatArray;
+    public Renderer PlayerRenderer;
     public Rigidbody MyRig;
     public Animator MyAnime;
 
@@ -54,14 +54,36 @@ public class NetworkPlayerController : NetworkComponent
 
     public override void NetworkedStart()
     {
-        SkeletonRenderer.materials[0] = SkeletonMatArray[this.Owner % 3];
-        SkeletonRenderer.material = SkeletonMatArray[this.Owner % 3];
+        
+        if(this.gameObject.tag == "Lobster")
+        {
+
+            PlayerRenderer.materials[0] = PlayerMatArray[this.Owner % 3];
+            PlayerRenderer.material = PlayerMatArray[this.Owner % 3];
+
+        }
+
         if (IsServer)
         {
-            int tstart = (this.Owner % 3) + 1;
-            GameObject temp = GameObject.Find("SpawnPoint" + tstart);
-            MyRig.position = temp.transform.position;
-            MyRig.useGravity = true;
+            //3 Human Spawn points (HSpawn#)
+            //4 Lobster Spawn points (LSpawn#)
+
+            if(this.gameObject.tag == "Lobster")
+            {
+
+                GameObject temp = GameObject.Find("LSpawn" + Random.Range(1, 5));
+                MyRig.position = temp.transform.position;
+                MyRig.useGravity = true;
+
+            } else if (this.gameObject.tag == "Human")
+            {
+
+                GameObject temp = GameObject.Find("HSpawn" + Random.Range(1, 4));
+                MyRig.position = temp.transform.position;
+                MyRig.useGravity = true;
+
+            }
+
         }
 
         if (IsLocalPlayer)
