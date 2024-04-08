@@ -8,8 +8,8 @@ using UnityEngine.InputSystem;
 
 public class NetworkPlayerController : NetworkComponent
 {
-    public Material[] SkeletonMatArray;
-    public Renderer SkeletonRenderer;
+    public Material[] PlayerMatArray;
+    public Renderer PlayerRenderer;
     public Rigidbody MyRig;
     public Animator MyAnime;
 
@@ -54,8 +54,8 @@ public class NetworkPlayerController : NetworkComponent
 
     public override void NetworkedStart()
     {
-        SkeletonRenderer.materials[0] = SkeletonMatArray[this.Owner % 3];
-        SkeletonRenderer.material = SkeletonMatArray[this.Owner % 3];
+        PlayerRenderer.materials[0] = PlayerMatArray[this.Owner % 3];
+        PlayerRenderer.material = PlayerMatArray[this.Owner % 3];
         if (IsServer)
         {
             int tstart = (this.Owner % 3) + 1;
