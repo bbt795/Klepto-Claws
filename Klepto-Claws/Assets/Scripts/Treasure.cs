@@ -33,6 +33,29 @@ public class Treasure : NetworkComponent
 
                 break;
 
+            case "Treasure3":
+
+                treasureValue = 120;
+                
+                break;
+
+            case "Treasure4":
+
+                treasureValue = 100;
+
+                break;
+
+            case "Treasure5":
+
+                treasureValue = 95;
+
+                break;
+
+            case "Treasure6":
+
+                treasureValue = 75;
+
+                break;
         }
 
 

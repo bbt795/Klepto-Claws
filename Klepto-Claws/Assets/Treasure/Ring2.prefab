@@ -53,16 +53,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 9f6dbbe7eb930134cb7e31b4b5ab983c, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c942d41f52344754293cddcc0d6f22ce, type: 2}
     - target: {fileID: -7511558181221131132, guid: 9f6dbbe7eb930134cb7e31b4b5ab983c, type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
+      propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 8dac32eb542932245bbeb324fc26d651, type: 2}
     - target: {fileID: 919132149155446097, guid: 9f6dbbe7eb930134cb7e31b4b5ab983c, type: 3}
       propertyPath: m_Name
-      value: SM_ring_5 Variant
+      value: Ring2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9f6dbbe7eb930134cb7e31b4b5ab983c, type: 3}
+      propertyPath: m_TagString
+      value: Treasure4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
