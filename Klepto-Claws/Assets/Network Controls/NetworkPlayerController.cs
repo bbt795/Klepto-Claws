@@ -161,7 +161,23 @@ public class NetworkPlayerController : NetworkComponent
             MyRig.velocity = this.transform.forward * LastMove.y * 3 + new Vector3(0, MyRig.velocity.y, 0);
             MyRig.angularVelocity = new Vector3(0, LastMove.x, 0) * Mathf.PI / 3.0f;
             var speed = Mathf.Max(Mathf.Abs(MyRig.velocity.x), Mathf.Max(MyRig.angularVelocity.y));
-            MyAnime.SetInteger("DIR", 1);
+            if(this.gameObject.tag == "Human")
+            {
+                bool caught = MyAnime.GetBool("Captured");
+               if(!caught)
+                {
+                    MyAnime.SetInteger("DIR", 1);
+                }
+                else if(caught)
+                {
+                    MyAnime.SetInteger("DIR", 2);
+                } 
+            }
+            else
+            {
+                MyAnime.SetInteger("DIR", 1);
+            }
+            
 
         }
 
@@ -179,13 +195,13 @@ public class NetworkPlayerController : NetworkComponent
             if (Mathf.Abs(MyRig.velocity.magnitude) > Mathf.Abs(MyRig.angularVelocity.y))
             {
 
-                MyAnime.SetFloat("speedv", MyRig.velocity.magnitude);
+                MyAnime.SetInteger("DIR", 1);
 
             }
             else
             {
 
-                MyAnime.SetFloat("speedv", MyRig.angularVelocity.y);
+                MyAnime.SetInteger("DIR", 0);
 
             }
 
@@ -197,6 +213,7 @@ public class NetworkPlayerController : NetworkComponent
     {
 
         yield return new WaitForSeconds(0.5f);
+        MyAnime.SetInteger("DIR", 0);
         CanFire = true;
 
     }
