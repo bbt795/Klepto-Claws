@@ -90,25 +90,29 @@ public class GameMaster : NetworkComponent
 
             MyId.NotifyDirty();
 
+            int spawnIndex = Random.Range(0, SpawnPoints.Count); // Randomly select initial spawn index
+
             foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
             {
-
-                int spawn = Random.Range(0, SpawnPoints.Count);
-                CurrentSpawn = SpawnPoints[spawn];
+                // Get the current spawn point
+                Vector3 currentSpawn = SpawnPoints[spawnIndex];
 
                 if (np.IsHuman == true)
                 {
                     MyCore.NetCreateObject(
-                            1, np.Owner, CurrentSpawn, Quaternion.identity
+                            1, np.Owner, currentSpawn, Quaternion.identity
                         );
                 }
 
                 if(np.IsLobster == true)
                 {
                     MyCore.NetCreateObject(
-                            2, np.Owner, SpawnPoints[spawn++], Quaternion.identity
+                            2, np.Owner, currentSpawn, Quaternion.identity
                         );
                 }
+
+                // Move to the next spawn point index, and wrap around if necessary
+                spawnIndex = (spawnIndex + 1) % SpawnPoints.Count;
             }
         }
         while(IsServer)
