@@ -30,7 +30,7 @@ public class GameMaster : NetworkComponent
         if(flag == "GAMEEND")
         {
             GameEnd = true;
-            StartCoroutine(StartGameEnd());
+            //StartCoroutine(StartGameEnd());
         }
     }
     public override void NetworkedStart()
