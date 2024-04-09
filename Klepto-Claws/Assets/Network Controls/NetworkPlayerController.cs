@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 public class NetworkPlayerController : NetworkComponent
 {
     public Material[] PlayerMatArray;
-    public Renderer PlayerRenderer;
+    //public Renderer PlayerRenderer;
     public Rigidbody MyRig;
     public Animator MyAnime;
 
@@ -42,11 +42,11 @@ public class NetworkPlayerController : NetworkComponent
 
                 CanFire = false;
                 StartCoroutine(Reload());
-                SendUpdate("FIRE", "1");
+                SendUpdate("FIRE", "2");
 
             }
 
-            MyAnime.SetTrigger("Attack1h1");
+            MyAnime.SetInteger("DIR", 2);
 
         }
 
@@ -58,8 +58,8 @@ public class NetworkPlayerController : NetworkComponent
         /*if(this.gameObject.tag == "Lobster")
         {
 
-            PlayerRenderer.materials[0] = PlayerMatArray[this.Owner % 3];
-            PlayerRenderer.material = PlayerMatArray[this.Owner % 3];
+            //PlayerRenderer.materials[0] = PlayerMatArray[this.Owner % 3];
+            //PlayerRenderer.material = PlayerMatArray[this.Owner % 3];
 
         }
 
@@ -133,7 +133,7 @@ public class NetworkPlayerController : NetworkComponent
     {
         if (context.action.phase == InputActionPhase.Started)
         {
-            SendCommand("FIRE", "1");
+            SendCommand("FIRE", "2");
         }
     }
 
@@ -161,7 +161,7 @@ public class NetworkPlayerController : NetworkComponent
             MyRig.velocity = this.transform.forward * LastMove.y * 3 + new Vector3(0, MyRig.velocity.y, 0);
             MyRig.angularVelocity = new Vector3(0, LastMove.x, 0) * Mathf.PI / 3.0f;
             var speed = Mathf.Max(Mathf.Abs(MyRig.velocity.x), Mathf.Max(MyRig.angularVelocity.y));
-            MyAnime.SetFloat("speedv", speed);
+            MyAnime.SetInteger("DIR", 1);
 
         }
 
