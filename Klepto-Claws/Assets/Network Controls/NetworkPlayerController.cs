@@ -55,7 +55,7 @@ public class NetworkPlayerController : NetworkComponent
     public override void NetworkedStart()
     {
         
-        if(this.gameObject.tag == "Lobster")
+        /*if(this.gameObject.tag == "Lobster")
         {
 
             PlayerRenderer.materials[0] = PlayerMatArray[this.Owner % 3];
@@ -84,7 +84,7 @@ public class NetworkPlayerController : NetworkComponent
 
             }
 
-        }
+        }*/
 
         if (IsLocalPlayer)
         {
