@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3294867182232510764}
   - component: {fileID: 746840486288774630}
   - component: {fileID: 1359442912182413382}
+  - component: {fileID: 8949035275262163823}
   m_Layer: 0
   m_Name: Stone2
   m_TagString: Treasure1
@@ -104,3 +105,24 @@ MonoBehaviour:
   UseLobby: 0
   UpdateFrequency: 0.1
   MyCore: {fileID: 0}
+--- !u!65 &8949035275262163823
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251353114522481715}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.42746723, y: 0.37032443, z: 0.08478966}
+  m_Center: {x: 0.0000049844384, y: -0.0000086426735, z: 0.0000026058406}
