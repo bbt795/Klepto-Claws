@@ -13,6 +13,7 @@ TagManager:
   - Treasure4
   - Treasure5
   - Treasure6
+  - ItemPoint
   layers:
   - Default
   - TransparentFX

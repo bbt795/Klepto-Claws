@@ -15,6 +15,9 @@ public class GameMaster : NetworkComponent
     public List<Vector3> SpawnPoints;
     public Vector3 CurrentSpawn;
 
+    public List<Vector3> ItemPoints;
+    public Vector3 CurrentItemSpawn;
+
     public override void HandleMessage(string flag, string value)
     {   
         if(flag == "GAMESTART")
@@ -114,6 +117,25 @@ public class GameMaster : NetworkComponent
                 // Move to the next spawn point index, and wrap around if necessary
                 spawnIndex = (spawnIndex + 1) % SpawnPoints.Count;
             }
+
+            // Shuffle the ItemPoints list to randomize the order
+            for (int i = 0; i < ItemPoints.Count; i++)
+            {
+                Vector3 temp = ItemPoints[i];
+                int randomIndex = Random.Range(i, ItemPoints.Count);
+                ItemPoints[i] = ItemPoints[randomIndex];
+                ItemPoints[randomIndex] = temp;
+            }
+
+            // Loop through each point and spawn a treasure item
+            for (int i = 0; i < ItemPoints.Count; i++)
+            {
+                Vector3 currentItemSpawn = ItemPoints[i];
+
+                //randomize type
+                int randomTreasure = Random.Range(3, 22);
+                MyCore.NetCreateObject(randomTreasure, randomTreasure, currentItemSpawn, Quaternion.identity);
+            }
         }
         while(IsServer)
         {
@@ -138,6 +160,13 @@ public class GameMaster : NetworkComponent
         foreach (GameObject g in temp)
         {
             SpawnPoints.Add(g.transform.position);
+        }
+
+        GameObject[] temp2 = GameObject.FindGameObjectsWithTag("ItemPoint");
+        ItemPoints = new List<Vector3>();
+        foreach (GameObject g in temp2)
+        {
+            ItemPoints.Add(g.transform.position);
         }
     }
 
