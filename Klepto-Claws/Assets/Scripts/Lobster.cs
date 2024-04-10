@@ -48,6 +48,62 @@ public class Lobster: NetworkComponent, IPlayer
 
     }
 
+    private void OnTriggerEnter(Collider c)
+    {
+        //MyCore.NetDestroyObject(MyId.NetId);
+        //shouldnt be MyId.NetId but idk how to access other objects' net IDs :(
+
+        if (IsServer || IsClient)
+        {
+            switch (c.gameObject.tag)
+            {
+
+                case "Treasure1":
+
+                    Debug.Log("Treasure value added: 250");
+                    //treasureValue = 250;
+
+                    break;
+
+                case "Treasure2":
+
+                    Debug.Log("Treasure value added: 150");
+                    //treasureValue = 150;
+
+                    break;
+
+                case "Treasure3":
+
+                    Debug.Log("Treasure value added: 120");
+                    //treasureValue = 120;
+
+                    break;
+
+                case "Treasure4":
+
+                    Debug.Log("Treasure value added: 100");
+                    //treasureValue = 100;
+
+                    break;
+
+                case "Treasure5":
+
+                    Debug.Log("Treasure value added: 95");
+                    //treasureValue = 95;
+
+                    break;
+
+                case "Treasure6":
+
+                    Debug.Log("Treasure value added: 75");
+                    //treasureValue = 75;
+
+                    break;
+            }   
+        }
+
+    }
+
     public IEnumerator Reload()
     {
 
