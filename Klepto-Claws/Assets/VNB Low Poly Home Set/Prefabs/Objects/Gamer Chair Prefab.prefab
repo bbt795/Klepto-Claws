@@ -1,0 +1,600 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9042795695079467854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1002421810740607509}
+  m_Layer: 0
+  m_Name: Gamer Chair Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1002421810740607509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9042795695079467854}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -15, y: 1.5, z: 20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3504636485911015910}
+  - {fileID: 6283122006814633776}
+  - {fileID: 883820850019030013}
+  - {fileID: 1096195199569126259}
+  - {fileID: 6523939978770975740}
+  - {fileID: 9047436726735905102}
+  - {fileID: 4383708427746431656}
+  - {fileID: 8288957046214956745}
+  - {fileID: 7899256360846267508}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &629605391758722200
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1002421810740607509}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a3591ec6fc9b543b1a66fd31eb00a92a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a3591ec6fc9b543b1a66fd31eb00a92a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.049999952
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a3591ec6fc9b543b1a66fd31eb00a92a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.059999466
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a3591ec6fc9b543b1a66fd31eb00a92a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a3591ec6fc9b543b1a66fd31eb00a92a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a3591ec6fc9b543b1a66fd31eb00a92a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a3591ec6fc9b543b1a66fd31eb00a92a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a3591ec6fc9b543b1a66fd31eb00a92a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a3591ec6fc9b543b1a66fd31eb00a92a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a3591ec6fc9b543b1a66fd31eb00a92a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a3591ec6fc9b543b1a66fd31eb00a92a, type: 3}
+      propertyPath: m_Name
+      value: Gamer Chair Ac
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a3591ec6fc9b543b1a66fd31eb00a92a, type: 3}
+--- !u!4 &1096195199569126259 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a3591ec6fc9b543b1a66fd31eb00a92a, type: 3}
+  m_PrefabInstance: {fileID: 629605391758722200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &849296986896774166
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1002421810740607509}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 54e517ee256b748569213d24befc7022, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 54e517ee256b748569213d24befc7022, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.586
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 54e517ee256b748569213d24befc7022, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.24399948
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 54e517ee256b748569213d24befc7022, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 54e517ee256b748569213d24befc7022, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 54e517ee256b748569213d24befc7022, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 54e517ee256b748569213d24befc7022, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 54e517ee256b748569213d24befc7022, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 54e517ee256b748569213d24befc7022, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 54e517ee256b748569213d24befc7022, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 54e517ee256b748569213d24befc7022, type: 3}
+      propertyPath: m_Name
+      value: Gamer Chair Base Bottom
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 54e517ee256b748569213d24befc7022, type: 3}
+--- !u!4 &883820850019030013 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 54e517ee256b748569213d24befc7022, type: 3}
+  m_PrefabInstance: {fileID: 849296986896774166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3974498335756391949
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1002421810740607509}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6617ee6c978ea4debbfb2f9606e3c3f5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6617ee6c978ea4debbfb2f9606e3c3f5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6617ee6c978ea4debbfb2f9606e3c3f5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6617ee6c978ea4debbfb2f9606e3c3f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6617ee6c978ea4debbfb2f9606e3c3f5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6617ee6c978ea4debbfb2f9606e3c3f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6617ee6c978ea4debbfb2f9606e3c3f5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6617ee6c978ea4debbfb2f9606e3c3f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6617ee6c978ea4debbfb2f9606e3c3f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6617ee6c978ea4debbfb2f9606e3c3f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6617ee6c978ea4debbfb2f9606e3c3f5, type: 3}
+      propertyPath: m_Name
+      value: Gamer Chair Back
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6617ee6c978ea4debbfb2f9606e3c3f5, type: 3}
+--- !u!4 &3504636485911015910 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6617ee6c978ea4debbfb2f9606e3c3f5, type: 3}
+  m_PrefabInstance: {fileID: 3974498335756391949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4277494869415114051
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1002421810740607509}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.34179974
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5259
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.13299942
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_Name
+      value: Gamer Chair Wheel (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+--- !u!4 &4383708427746431656 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+  m_PrefabInstance: {fileID: 4277494869415114051}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5816569688764532955
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1002421810740607509}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 09fb41f06083848b8a93e3605a826a51, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09fb41f06083848b8a93e3605a826a51, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09fb41f06083848b8a93e3605a826a51, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.24399948
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09fb41f06083848b8a93e3605a826a51, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09fb41f06083848b8a93e3605a826a51, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09fb41f06083848b8a93e3605a826a51, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09fb41f06083848b8a93e3605a826a51, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09fb41f06083848b8a93e3605a826a51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09fb41f06083848b8a93e3605a826a51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09fb41f06083848b8a93e3605a826a51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 09fb41f06083848b8a93e3605a826a51, type: 3}
+      propertyPath: m_Name
+      value: Gamer Chair Base
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 09fb41f06083848b8a93e3605a826a51, type: 3}
+--- !u!4 &6283122006814633776 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 09fb41f06083848b8a93e3605a826a51, type: 3}
+  m_PrefabInstance: {fileID: 5816569688764532955}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6702211275069352983
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1002421810740607509}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.519
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.10000038
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_Name
+      value: Gamer Chair Wheel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+--- !u!4 &6523939978770975740 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+  m_PrefabInstance: {fileID: 6702211275069352983}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7644142058327896991
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1002421810740607509}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.21039963
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.519
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.55599976
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_Name
+      value: Gamer Chair Wheel (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+--- !u!4 &7899256360846267508 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+  m_PrefabInstance: {fileID: 7644142058327896991}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8395540907027362082
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1002421810740607509}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.2109003
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.519
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.55599976
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_Name
+      value: Gamer Chair Wheel (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+--- !u!4 &8288957046214956745 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+  m_PrefabInstance: {fileID: 8395540907027362082}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8792234535230621349
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1002421810740607509}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.34189987
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5259
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.13299942
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+      propertyPath: m_Name
+      value: Gamer Chair Wheel (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+--- !u!4 &9047436726735905102 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ab18ce9859017499993a9f7aa63be3bd, type: 3}
+  m_PrefabInstance: {fileID: 8792234535230621349}
+  m_PrefabAsset: {fileID: 0}
