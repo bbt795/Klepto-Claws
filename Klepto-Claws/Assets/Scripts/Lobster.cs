@@ -60,42 +60,42 @@ public class Lobster: NetworkComponent, IPlayer
 
                 case "Treasure1":
 
-                    Debug.Log("Treasure value added: 250");
+                    Debug.Log("Trigger entered");
                     //treasureValue = 250;
 
                     break;
 
                 case "Treasure2":
 
-                    Debug.Log("Treasure value added: 150");
+                    Debug.Log("Trigger entered");
                     //treasureValue = 150;
 
                     break;
 
                 case "Treasure3":
 
-                    Debug.Log("Treasure value added: 120");
+                    Debug.Log("Trigger entered");
                     //treasureValue = 120;
 
                     break;
 
                 case "Treasure4":
 
-                    Debug.Log("Treasure value added: 100");
+                    Debug.Log("Trigger entered");
                     //treasureValue = 100;
 
                     break;
 
                 case "Treasure5":
 
-                    Debug.Log("Treasure value added: 95");
+                    Debug.Log("Trigger entered");
                     //treasureValue = 95;
 
                     break;
 
                 case "Treasure6":
 
-                    Debug.Log("Treasure value added: 75");
+                    Debug.Log("Trigger entered");
                     //treasureValue = 75;
 
                     break;
