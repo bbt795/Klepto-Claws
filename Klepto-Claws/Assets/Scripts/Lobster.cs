@@ -55,7 +55,16 @@ public class Lobster: NetworkComponent, IPlayer
 
         if (IsServer || IsClient)
         {
-            switch (c.gameObject.tag)
+
+            if (c.gameObject.GetComponent<Treasure>() != null)
+            {
+
+                TreasureCollected += c.gameObject.GetComponent<Treasure>().treasureValue;
+                MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
+
+            }
+
+            /*switch (c.gameObject.tag)
             {
 
                 case "Treasure1":
@@ -105,7 +114,7 @@ public class Lobster: NetworkComponent, IPlayer
                     Debug.Log(TreasureCollected);
 
                     break;
-            }   
+            }*/   
         }
 
     }

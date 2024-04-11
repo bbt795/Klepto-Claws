@@ -94,6 +94,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c4117ab1f09cdfd4298936476c570565, type: 3}
       insertIndex: -1
       addedObject: {fileID: -8693389281933676161}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c4117ab1f09cdfd4298936476c570565, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2510040542052535174}
   m_SourcePrefab: {fileID: 100100000, guid: c4117ab1f09cdfd4298936476c570565, type: 3}
 --- !u!1 &7656864244206196981 stripped
 GameObject:
@@ -139,5 +142,22 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2199959, y: 0.20507842, z: 0.23970896}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0.20033365, z: 0.0500302}
+--- !u!114 &2510040542052535174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7656864244206196981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84eed4eaa7642824c812f9b1dc48d980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyCore: {fileID: 0}
+  MyId: {fileID: 0}
+  IsDirty: 0
+  type: 0
+  treasureValue: 0
