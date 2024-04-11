@@ -9,6 +9,7 @@ public class Lobster: NetworkComponent, IPlayer
     public float Strength { get; set; }
     public int TreasureCollected;
     public Material[] MaterialArray;
+    private bool isPressed;
 
     public override void HandleMessage(string flag, string value)
     {
@@ -37,14 +38,12 @@ public class Lobster: NetworkComponent, IPlayer
     void Update()
     {
         
+        if(Input.GetKeyDown(KeyCode.E))
+        {
 
+            isPressed = true;
 
-    }
-
-    public void OnTrigger()
-    {
-        
-
+        }
 
     }
 
@@ -59,62 +58,54 @@ public class Lobster: NetworkComponent, IPlayer
             if (c.gameObject.GetComponent<Treasure>() != null)
             {
 
-                TreasureCollected += c.gameObject.GetComponent<Treasure>().treasureValue;
-                MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
+                c.gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
             }
 
-            /*switch (c.gameObject.tag)
+        }
+
+    }
+
+    private void OnTriggerStay(Collider c)
+    {
+
+        if (IsServer || IsClient)
+        {
+
+            if(c.gameObject.GetComponent<Treasure>() != null)
             {
 
-                case "Treasure1":
+                Debug.Log("i'm in");
 
-                    TreasureCollected += 250;
+                if (isPressed)
+                {
+
+                    Debug.Log("E down");
+                    TreasureCollected += c.gameObject.GetComponent<Treasure>().treasureValue;
                     MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
-                    Debug.Log(TreasureCollected);
+                    isPressed = false;
 
-                    break;
+                }
 
-                case "Treasure2":
+            }
 
-                    TreasureCollected += 150;
-                    MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
-                    Debug.Log(TreasureCollected);
+        }
+        
+    }
 
-                    break;
+    private void OnTriggerExit(Collider c)
+    {
 
-                case "Treasure3":
+        if (IsServer || IsClient)
+        {
 
-                    TreasureCollected += 120;
-                    MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
-                    Debug.Log(TreasureCollected);
+            if (c.gameObject.GetComponent<Treasure>() != null)
+            {
 
-                    break;
+                c.gameObject.transform.GetChild(0).gameObject.SetActive(false);
 
-                case "Treasure4":
+            }
 
-                    TreasureCollected += 100;
-                    MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
-                    Debug.Log(TreasureCollected);
-
-                    break;
-
-                case "Treasure5":
-
-                    TreasureCollected += 95;
-                    MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
-                    Debug.Log(TreasureCollected);
-
-                    break;
-
-                case "Treasure6":
-
-                    TreasureCollected += 75;
-                    MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
-                    Debug.Log(TreasureCollected);
-
-                    break;
-            }*/   
         }
 
     }
