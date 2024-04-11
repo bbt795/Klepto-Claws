@@ -37,12 +37,13 @@ public class Lobster: NetworkComponent, IPlayer
     // Update is called once per frame
     void Update()
     {
-        
-        if(Input.GetKeyDown(KeyCode.E))
+        if (IsLocalPlayer)
         {
-
-            isPressed = true;
-
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("E key pressed");
+                isPressed = true;
+            }
         }
 
     }
@@ -71,8 +72,9 @@ public class Lobster: NetworkComponent, IPlayer
 
         if (IsServer || IsClient)
         {
+            Treasure treasure = c.GetComponent<Treasure>();
 
-            if(c.gameObject.GetComponent<Treasure>() != null)
+            if (treasure != null)
             {
 
                 Debug.Log("i'm in");
@@ -80,9 +82,13 @@ public class Lobster: NetworkComponent, IPlayer
                 if (isPressed)
                 {
 
-                    Debug.Log("E down");
-                    TreasureCollected += c.gameObject.GetComponent<Treasure>().treasureValue;
-                    MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
+                    TreasureCollected += treasure.treasureValue;
+                    Debug.Log("Treasure collected: " + TreasureCollected);
+                    if (IsServer)
+                    {
+                        MyCore.NetDestroyObject(c.GetComponent<NetworkID>().NetId);
+                        Debug.Log("Object destroyed on server");
+                    }
                     isPressed = false;
 
                 }
