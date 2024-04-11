@@ -22,7 +22,7 @@ public class Lobster: NetworkComponent, IPlayer
 
     public override IEnumerator SlowUpdate()
     {
-        //throw new System.NotImplementedException();
+        yield return new WaitForSeconds(0.1f);
     }
 
     // Start is called before the first frame update
@@ -60,43 +60,49 @@ public class Lobster: NetworkComponent, IPlayer
 
                 case "Treasure1":
 
-                    Debug.Log("Trigger entered");
-                    //treasureValue = 250;
+                    TreasureCollected += 250;
+                    MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
+                    Debug.Log(TreasureCollected);
 
                     break;
 
                 case "Treasure2":
 
-                    Debug.Log("Trigger entered");
-                    //treasureValue = 150;
+                    TreasureCollected += 150;
+                    MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
+                    Debug.Log(TreasureCollected);
 
                     break;
 
                 case "Treasure3":
 
-                    Debug.Log("Trigger entered");
-                    //treasureValue = 120;
+                    TreasureCollected += 120;
+                    MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
+                    Debug.Log(TreasureCollected);
 
                     break;
 
                 case "Treasure4":
 
-                    Debug.Log("Trigger entered");
-                    //treasureValue = 100;
+                    TreasureCollected += 100;
+                    MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
+                    Debug.Log(TreasureCollected);
 
                     break;
 
                 case "Treasure5":
 
-                    Debug.Log("Trigger entered");
-                    //treasureValue = 95;
+                    TreasureCollected += 95;
+                    MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
+                    Debug.Log(TreasureCollected);
 
                     break;
 
                 case "Treasure6":
 
-                    Debug.Log("Trigger entered");
-                    //treasureValue = 75;
+                    TreasureCollected += 75;
+                    MyCore.NetDestroyObject(c.gameObject.GetComponent<NetworkID>().NetId);
+                    Debug.Log(TreasureCollected);
 
                     break;
             }   
