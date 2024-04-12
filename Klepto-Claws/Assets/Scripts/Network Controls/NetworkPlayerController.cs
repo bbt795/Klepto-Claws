@@ -36,6 +36,7 @@ public class NetworkPlayerController : NetworkComponent
 
         if (flag == "FIRE" && CanFire)
         {
+            MyAnime.SetInteger("DIR", 2);
 
             if (IsServer)
             {
@@ -45,8 +46,6 @@ public class NetworkPlayerController : NetworkComponent
                 SendUpdate("FIRE", "2");
 
             }
-
-            MyAnime.SetInteger("DIR", 2);
 
         }
 
