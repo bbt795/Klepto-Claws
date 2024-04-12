@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: 0}
+  m_Actions: {fileID: -944628639613478452, guid: 8440bc4ec70c34c65ab2474ede47a5db, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -257,56 +257,80 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c4f44ab3-3e51-4610-bb7c-5b64ce25f9cd
+      m_Calls:
+      - m_Target: {fileID: -8394262164672688589}
+        m_TargetAssemblyTypeName: NetworkPlayerController, Assembly-CSharp
+        m_MethodName: OnDirectionChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 84748720-8bff-4531-b2ee-c1c06d3bef8d
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: d9337bde-cdd9-46ec-8323-1236327f036b
+    m_ActionId: 4f02c387-406e-47d9-9861-1a45f718767b
     m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a5b301d6-1dda-4663-9332-b9e994ec2f9c
+      m_Calls:
+      - m_Target: {fileID: -8394262164672688589}
+        m_TargetAssemblyTypeName: NetworkPlayerController, Assembly-CSharp
+        m_MethodName: OnFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9048f1ce-49bd-4fff-88e1-f041b9a58c09
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: f154552b-2371-4a9a-94f7-ed652c1b1ced
+    m_ActionId: 72608c13-ad73-4e12-9344-82a33fb15015
     m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 8a35dfcd-34fc-4ee8-a106-2fa6bcc87a8b
+    m_ActionId: 5aef23cf-5eda-4b76-8f0d-1afea5f56ef7
     m_ActionName: UI/Submit[/Keyboard/enter]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: a1f9b696-cd89-4c91-8ac0-8e2c00297bb0
+    m_ActionId: a4b01e30-96b1-4b12-890e-1f8e0ef1d7b2
     m_ActionName: UI/Cancel[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: e7f2e836-19dc-42d8-833e-10e42bf83b04
+    m_ActionId: a45aadb4-10e3-472a-8087-b52093f72240
     m_ActionName: UI/Point[/Mouse/position,/Pen/position]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 2ca5444d-f564-4e5b-9f03-291dc6474221
+    m_ActionId: f01336b7-1c96-4058-9634-e7023909e0c7
     m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: a5384bcd-63f8-4860-a389-94707fc41308
+    m_ActionId: 6f6ecc95-4c91-4da6-820a-36e9dd4aebc0
     m_ActionName: UI/ScrollWheel[/Mouse/scroll]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: c14d94ca-f2a5-478a-a818-c9d1dc43803b
+    m_ActionId: 680c1144-38d6-48cf-8d16-26366e13773f
     m_ActionName: UI/MiddleClick[/Mouse/middleButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: f2440ecf-4498-4c82-bcca-703f2371847a
+    m_ActionId: b9f936c6-5c13-4bc7-a15e-0d4cf1f5f962
     m_ActionName: UI/RightClick[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 731a3922-7b67-4c61-af9b-6f484a6299bb
+    m_ActionId: a249bbff-61ca-49b0-8063-3304b254b2af
     m_ActionName: UI/TrackedDevicePosition
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 62d4c6b4-4f97-493b-bfcc-f52d483324ec
+    m_ActionId: dbb3fa0d-05d9-444a-a02d-b44c5f164a4b
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 

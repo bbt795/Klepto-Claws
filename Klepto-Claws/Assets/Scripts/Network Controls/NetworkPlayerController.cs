@@ -23,6 +23,8 @@ public class NetworkPlayerController : NetworkComponent
     public bool CanFire = true;
     public bool GameOver = false;
 
+    public bool Captured;
+
     public override void HandleMessage(string flag, string value)
     {
 
@@ -112,14 +114,14 @@ public class NetworkPlayerController : NetworkComponent
 
     public void OnDirectionChanged(InputAction.CallbackContext context)
     {
-        if (context.action.phase == InputActionPhase.Started || context.action.phase == InputActionPhase.Performed)
+        if (context.started || context.performed)
         {
 
             LastMove = context.ReadValue<Vector2>();
             SendCommand("MOVE", LastMove.x + "," + LastMove.y);
 
         }
-        if (context.action.phase == InputActionPhase.Canceled)
+        if (context.canceled)
         {
 
             LastMove = Vector2.zero;
@@ -154,6 +156,7 @@ public class NetworkPlayerController : NetworkComponent
     // Update is called once per frame
     void Update()
     {
+        Captured = MyAnime.GetBool("Caught");
 
         if (IsServer)
         {
@@ -161,24 +164,7 @@ public class NetworkPlayerController : NetworkComponent
             MyRig.velocity = this.transform.forward * LastMove.y * 3 + new Vector3(0, MyRig.velocity.y, 0);
             MyRig.angularVelocity = new Vector3(0, LastMove.x, 0) * Mathf.PI / 3.0f;
             var speed = Mathf.Max(Mathf.Abs(MyRig.velocity.x), Mathf.Max(MyRig.angularVelocity.y));
-            if(this.gameObject.tag == "Human")
-            {
-                bool caught = MyAnime.GetBool("Captured");
-               if(!caught)
-                {
-                    MyAnime.SetInteger("DIR", 1);
-                }
-                else if(caught)
-                {
-                    MyAnime.SetInteger("DIR", 2);
-                } 
-            }
-            else
-            {
-                MyAnime.SetInteger("DIR", 1);
-            }
-            
-
+            MyAnime.SetFloat("Move", speed);
         }
 
         if (IsLocalPlayer)
@@ -195,13 +181,13 @@ public class NetworkPlayerController : NetworkComponent
             if (Mathf.Abs(MyRig.velocity.magnitude) > Mathf.Abs(MyRig.angularVelocity.y))
             {
 
-                MyAnime.SetInteger("DIR", 1);
+                MyAnime.SetFloat("Move", 1f);
 
             }
             else
             {
 
-                MyAnime.SetInteger("DIR", 0);
+                MyAnime.SetFloat("Move", 0f);
 
             }
 
