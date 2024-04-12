@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NETWORK_ENGINE;
+using UnityEngine.InputSystem;
 
 public class Lobster : NetworkComponent, IPlayer
 {
@@ -10,12 +11,25 @@ public class Lobster : NetworkComponent, IPlayer
     public int TreasureCollected;
     public Material[] MaterialArray;
     
-    private bool canCollect;
-    private GameObject currentcolliding;
+    public bool canCollect;
+    public GameObject currentcolliding;
 
     public override void HandleMessage(string flag, string value)
     {
         //throw new System.NotImplementedException();
+        if(flag == "PICKUP" && canCollect)
+        {
+            Treasure treasure = currentcolliding.GetComponent<Treasure>();
+            TreasureCollected += treasure.treasureValue;
+            Debug.Log("Treasure collected: " + TreasureCollected);
+            MyCore.NetDestroyObject(currentcolliding.GetComponent<NetworkID>().NetId);
+            Debug.Log("Object destroyed on server");
+            SendUpdate("MONEY", TreasureCollected.ToString());
+        }
+        if(flag == "MONEY")
+        {
+            TreasureCollected = int.Parse(value);
+        }
     }
 
     public override void NetworkedStart()
@@ -38,31 +52,64 @@ public class Lobster : NetworkComponent, IPlayer
 
     }
 
+    // public void OnClick(InputAction.CallbackContext context)
+    // {
+    //     if (canCollect)
+    //     {
+
+    //         Debug.Log("Zoinks");
+
+    //         if (context.GetKey(KeyCode.E))
+    //         {
+
+    //             Debug.Log("Press E");
+
+    //             Treasure treasure = currentcolliding.GetComponent<Treasure>();
+    //             TreasureCollected += treasure.treasureValue;
+    //             Debug.Log("Treasure collected: " + TreasureCollected);
+    //             MyCore.NetDestroyObject(currentcolliding.GetComponent<NetworkID>().NetId);
+    //             Debug.Log("Object destroyed on server");
+
+    //         }
+
+    //         //Debug.Log("E key pressed");
+    //         //isPressed = true;
+    //     }
+    // }
+    public void OnPickUp(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Debug.Log("E was pushed");
+            SendCommand("PICKUP", "");
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
 
-        if (canCollect)
-        {
+        // if (canCollect)
+        // {
 
-            Debug.Log("Zoinks");
+        //     Debug.Log("Zoinks");
 
-            if (Input.GetKey(KeyCode.E))
-            {
+        //     if (Input.GetKey(KeyCode.E))
+        //     {
 
-                Debug.Log("Press E");
+        //         Debug.Log("Press E");
 
-                Treasure treasure = currentcolliding.GetComponent<Treasure>();
-                TreasureCollected += treasure.treasureValue;
-                Debug.Log("Treasure collected: " + TreasureCollected);
-                MyCore.NetDestroyObject(currentcolliding.GetComponent<NetworkID>().NetId);
-                Debug.Log("Object destroyed on server");
+        //         Treasure treasure = currentcolliding.GetComponent<Treasure>();
+        //         TreasureCollected += treasure.treasureValue;
+        //         Debug.Log("Treasure collected: " + TreasureCollected);
+        //         MyCore.NetDestroyObject(currentcolliding.GetComponent<NetworkID>().NetId);
+        //         Debug.Log("Object destroyed on server");
 
-            }
+        //     }
 
-            //Debug.Log("E key pressed");
-            //isPressed = true;
-        }
+        //     //Debug.Log("E key pressed");
+        //     //isPressed = true;
+        // }
 
     }
 
