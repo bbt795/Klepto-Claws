@@ -159,6 +159,7 @@ MonoBehaviour:
   IsFiring: 0
   CanFire: 1
   GameOver: 0
+  Captured: 0
 --- !u!54 &-4038620166462283280
 Rigidbody:
   m_ObjectHideFlags: 0
