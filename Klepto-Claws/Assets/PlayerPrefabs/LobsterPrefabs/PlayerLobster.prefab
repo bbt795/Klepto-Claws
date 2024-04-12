@@ -158,6 +158,7 @@ MonoBehaviour:
   IsFiring: 0
   CanFire: 1
   GameOver: 0
+  Captured: 0
 --- !u!54 &545441466435100671
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -279,13 +280,13 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4863262787635538660}
+      - m_Target: {fileID: 6759095934715475602}
         m_TargetAssemblyTypeName: NetworkPlayerController, Assembly-CSharp
-        m_MethodName: OnFire
-        m_Mode: 0
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -333,6 +334,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 62d4c6b4-4f97-493b-bfcc-f52d483324ec
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -8742728517300339311}
+        m_TargetAssemblyTypeName: Lobster, Assembly-CSharp
+        m_MethodName: OnPickUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9cc4ebdd-3401-4a64-9249-1150149b3a3d
+    m_ActionName: Player/PickUp[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4863262787635538660}
+        m_TargetAssemblyTypeName: NetworkPlayerController, Assembly-CSharp
+        m_MethodName: OnTaunt
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 41a8328d-80fd-4c14-9330-4687d2215667
+    m_ActionName: Player/Taunt[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -355,3 +388,5 @@ MonoBehaviour:
   IsDirty: 0
   TreasureCollected: 0
   MaterialArray: []
+  canCollect: 0
+  currentcolliding: {fileID: 0}

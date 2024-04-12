@@ -50,6 +50,15 @@ public class NetworkPlayerController : NetworkComponent
             }
             MyAnime.SetTrigger("Attack");
         }
+        
+        if(flag == "TAUNT")
+        {
+            if(IsServer)
+            {
+                SendUpdate("TAUNT", value);
+            }
+            MyAnime.SetTrigger("Taunt");
+        }
 
     }
 
@@ -114,7 +123,7 @@ public class NetworkPlayerController : NetworkComponent
 
     public void OnDirectionChanged(InputAction.CallbackContext context)
     {
-        if (context.started || context.performed)
+        if (IsLocalPlayer && (context.started || context.performed))
         {
 
             LastMove = context.ReadValue<Vector2>();
@@ -132,10 +141,19 @@ public class NetworkPlayerController : NetworkComponent
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (IsLocalPlayer && context.started)
         {
             Debug.Log("Fire button was pushed");
             SendCommand("FIRE", "2");
+        }
+    }
+
+    public void OnTaunt(InputAction.CallbackContext context)
+    {
+        if(IsLocalPlayer && context.started)
+        {
+            Debug.Log("Taunt button was pushed");
+            SendCommand("TAUNT", "3");
         }
     }
 
