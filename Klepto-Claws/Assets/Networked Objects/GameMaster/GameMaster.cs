@@ -15,19 +15,22 @@ public class GameMaster : NetworkComponent
     public List<Vector3> SpawnPoints;
     public Vector3 CurrentSpawn;
 
+    public List<Vector3> ItemPoints;
+    public Vector3 CurrentItemSpawn;
+
     public override void HandleMessage(string flag, string value)
-    {   
-        if(flag == "GAMESTART")
+    {
+        if (flag == "GAMESTART")
         {
             //   Want to disable PlayerInfo
             GameStarted = true;
-            foreach(NPM np in GameObject.FindObjectsOfType<NPM>())
+            foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
             {
                 np.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
                 //np.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
-        if(flag == "GAMEEND")
+        if (flag == "GAMEEND")
         {
             GameEnd = true;
             //StartCoroutine(StartGameEnd());
@@ -41,7 +44,7 @@ public class GameMaster : NetworkComponent
     public IEnumerator StartGameEnd()
     {
         yield return new WaitForSeconds(5);
-        foreach(NPM np in GameObject.FindObjectsOfType<NPM>())
+        foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
         {
             //np.transform.GetChild(0).gameObject.SetActive(true);
             np.UI_Money(MoneyStolen);
@@ -51,24 +54,24 @@ public class GameMaster : NetworkComponent
     }
     public override IEnumerator SlowUpdate()
     {
-        while(!GameStarted && IsServer)
+        while (!GameStarted && IsServer)
         {
             bool readyGo = true;
             int count = 0;
-            foreach(NPM np in GameObject.FindObjectsOfType<NPM>())
+            foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
             {
-                if(!np.IsReady)
+                if (!np.IsReady)
                 {
                     readyGo = false;
                     break;
                 }
                 count++;
             }
-            if(count < 1)
+            if (count < 1)
             {
                 readyGo = false;
             }
-            if(NPM.humanCount != 1 && NPM.lobsterCount != 3)
+            if (NPM.humanCount != 1 && NPM.lobsterCount != 3)
             {
                 readyGo = false;
             }
@@ -80,7 +83,7 @@ public class GameMaster : NetworkComponent
             //while(all players have not hit ready)
             //Wait
 
-            SendUpdate("GAMESTART", GameStarted.ToString()); 
+            SendUpdate("GAMESTART", GameStarted.ToString());
             SendUpdate("GAMEEND", GameEnd.ToString());
 
             //Go to each NetworkPlayerManager and look at their options
@@ -104,7 +107,7 @@ public class GameMaster : NetworkComponent
                         );
                 }
 
-                if(np.IsLobster == true)
+                if (np.IsLobster == true)
                 {
                     MyCore.NetCreateObject(
                             2, np.Owner, currentSpawn, Quaternion.identity
@@ -114,10 +117,29 @@ public class GameMaster : NetworkComponent
                 // Move to the next spawn point index, and wrap around if necessary
                 spawnIndex = (spawnIndex + 1) % SpawnPoints.Count;
             }
+
+            // Shuffle the ItemPoints list to randomize the order
+            for (int i = 0; i < ItemPoints.Count; i++)
+            {
+                Vector3 temp = ItemPoints[i];
+                int randomIndex = Random.Range(i, ItemPoints.Count);
+                ItemPoints[i] = ItemPoints[randomIndex];
+                ItemPoints[randomIndex] = temp;
+            }
+
+            // Loop through each point and spawn a treasure item
+            for (int i = 0; i < ItemPoints.Count; i++)
+            {
+                Vector3 currentItemSpawn = ItemPoints[i];
+
+                //randomize type
+                int randomTreasure = Random.Range(3, 22);
+                MyCore.NetCreateObject(randomTreasure, randomTreasure, currentItemSpawn, Quaternion.identity);
+            }
         }
-        while(IsServer)
+        while (IsServer)
         {
-            if(IsDirty)
+            if (IsDirty)
             {
                 SendUpdate("GAMESTART", GameStarted.ToString());
                 SendUpdate("GAMEEND", GameEnd.ToString());
@@ -138,6 +160,13 @@ public class GameMaster : NetworkComponent
         foreach (GameObject g in temp)
         {
             SpawnPoints.Add(g.transform.position);
+        }
+
+        GameObject[] temp2 = GameObject.FindGameObjectsWithTag("ItemPoint");
+        ItemPoints = new List<Vector3>();
+        foreach (GameObject g in temp2)
+        {
+            ItemPoints.Add(g.transform.position);
         }
     }
 
