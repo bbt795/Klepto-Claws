@@ -9,7 +9,9 @@ public class Lobster : NetworkComponent, IPlayer
     public float Strength { get; set; }
     public int TreasureCollected;
     public Material[] MaterialArray;
-    private bool isPressed;
+    
+    private bool canCollect;
+    private GameObject currentcolliding;
 
     public override void HandleMessage(string flag, string value)
     {
@@ -23,7 +25,9 @@ public class Lobster : NetworkComponent, IPlayer
 
     public override IEnumerator SlowUpdate()
     {
+
         yield return new WaitForSeconds(0.1f);
+
     }
 
     // Start is called before the first frame update
@@ -37,13 +41,27 @@ public class Lobster : NetworkComponent, IPlayer
     // Update is called once per frame
     void Update()
     {
-        if (IsLocalPlayer)
+
+        if (canCollect)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+
+            Debug.Log("Zoinks");
+
+            if (Input.GetKey(KeyCode.E))
             {
-                Debug.Log("E key pressed");
-                isPressed = true;
+
+                Debug.Log("Press E");
+
+                Treasure treasure = currentcolliding.GetComponent<Treasure>();
+                TreasureCollected += treasure.treasureValue;
+                Debug.Log("Treasure collected: " + TreasureCollected);
+                MyCore.NetDestroyObject(currentcolliding.GetComponent<NetworkID>().NetId);
+                Debug.Log("Object destroyed on server");
+
             }
+
+            //Debug.Log("E key pressed");
+            //isPressed = true;
         }
 
     }
@@ -60,6 +78,8 @@ public class Lobster : NetworkComponent, IPlayer
             {
 
                 c.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                currentcolliding = c.gameObject;
+                canCollect = true;
 
             }
 
@@ -67,7 +87,7 @@ public class Lobster : NetworkComponent, IPlayer
 
     }
 
-    private void OnTriggerStay(Collider c)
+    /*private void OnTriggerStay(Collider c)
     {
 
         if (IsServer || IsClient)
@@ -84,11 +104,8 @@ public class Lobster : NetworkComponent, IPlayer
 
                     TreasureCollected += treasure.treasureValue;
                     Debug.Log("Treasure collected: " + TreasureCollected);
-                    if (IsServer)
-                    {
-                        MyCore.NetDestroyObject(c.GetComponent<NetworkID>().NetId);
-                        Debug.Log("Object destroyed on server");
-                    }
+                    MyCore.NetDestroyObject(c.GetComponent<NetworkID>().NetId);
+                    Debug.Log("Object destroyed on server");
                     isPressed = false;
 
                 }
@@ -97,7 +114,7 @@ public class Lobster : NetworkComponent, IPlayer
 
         }
 
-    }
+    }*/
 
     private void OnTriggerExit(Collider c)
     {
@@ -109,6 +126,8 @@ public class Lobster : NetworkComponent, IPlayer
             {
 
                 c.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                currentcolliding = null;
+                canCollect = false;
 
             }
 
