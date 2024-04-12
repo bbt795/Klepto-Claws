@@ -36,17 +36,17 @@ public class NetworkPlayerController : NetworkComponent
 
         if (flag == "FIRE" && CanFire)
         {
-            MyAnime.SetInteger("DIR", 2);
+            
 
             if (IsServer)
             {
 
                 CanFire = false;
                 StartCoroutine(Reload());
-                SendUpdate("FIRE", "2");
+                SendUpdate("FIRE", value);
 
             }
-
+            MyAnime.SetTrigger("Attack");
         }
 
     }
@@ -130,8 +130,9 @@ public class NetworkPlayerController : NetworkComponent
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.action.phase == InputActionPhase.Started)
+        if (context.started)
         {
+            Debug.Log("Fire button was pushed");
             SendCommand("FIRE", "2");
         }
     }
@@ -212,7 +213,7 @@ public class NetworkPlayerController : NetworkComponent
     {
 
         yield return new WaitForSeconds(0.5f);
-        MyAnime.SetInteger("DIR", 0);
+        //MyAnime.SetInteger("DIR", 0);
         CanFire = true;
 
     }
