@@ -113,8 +113,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -96, y: -47.99933}
-  m_SizeDelta: {x: 371.1, y: 87.4}
+  m_AnchoredPosition: {x: -101.5, y: -47.99933}
+  m_SizeDelta: {x: 382.2, y: 87.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3084756715404362061
 CanvasRenderer:
@@ -157,7 +157,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Treasure Collected:'
+  m_Text: 'Treasure Collected: $'
 --- !u!1 &3913960566452241119
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +372,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 183.69978, y: -47.99933}
+  m_AnchoredPosition: {x: 295.39978, y: -47.99933}
   m_SizeDelta: {x: 411.6, y: 87.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2472346837623119255
@@ -410,7 +410,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 41
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -810,6 +810,7 @@ MonoBehaviour:
   MaterialArray: []
   canCollect: 0
   currentcolliding: {fileID: 0}
+  Value: {fileID: 4423228592050143967}
 --- !u!4 &6759095934715898546 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400018, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}

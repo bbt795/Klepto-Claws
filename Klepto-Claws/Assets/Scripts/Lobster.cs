@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NETWORK_ENGINE;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Lobster : NetworkComponent, IPlayer
 {
@@ -13,6 +14,8 @@ public class Lobster : NetworkComponent, IPlayer
     
     public bool canCollect;
     public GameObject currentcolliding;
+
+    public Text Value;
 
     public override void HandleMessage(string flag, string value)
     {
@@ -28,7 +31,16 @@ public class Lobster : NetworkComponent, IPlayer
         }
         if(flag == "MONEY")
         {
-            TreasureCollected = int.Parse(value);
+            TreasureCollected = int.Parse(value.ToString());
+            if (IsServer)
+            {
+                Value.text = TreasureCollected.ToString();
+                SendUpdate("MONEY", value.ToString());
+            }
+            if (IsClient)
+            {
+                Value.text = TreasureCollected.ToString();
+            }
         }
     }
 
