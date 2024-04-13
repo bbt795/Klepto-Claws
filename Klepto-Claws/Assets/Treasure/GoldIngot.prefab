@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 620484387104255275}
   - component: {fileID: 4834502702738204305}
   - component: {fileID: 7903183346128906442}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,6 +172,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4a39d8107f6c51d43bf68fd282f50abb, type: 3}
       propertyPath: m_Name
       value: GoldIngot
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4a39d8107f6c51d43bf68fd282f50abb, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4a39d8107f6c51d43bf68fd282f50abb, type: 3}
       propertyPath: m_TagString

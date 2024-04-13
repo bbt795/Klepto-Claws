@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4208712364195256461}
   - component: {fileID: 3751914600665693860}
   - component: {fileID: 1196707002319216451}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,6 +176,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c4117ab1f09cdfd4298936476c570565, type: 3}
       propertyPath: m_Name
       value: Necklace3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c4117ab1f09cdfd4298936476c570565, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c4117ab1f09cdfd4298936476c570565, type: 3}
       propertyPath: m_TagString

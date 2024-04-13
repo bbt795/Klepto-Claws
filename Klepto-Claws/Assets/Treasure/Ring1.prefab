@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7903871126499824008}
   - component: {fileID: 3175305413940330403}
   - component: {fileID: 4544970244509556064}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,6 +180,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 809748c72679405418cf9dcc8ba44fdd, type: 3}
       propertyPath: m_Name
       value: Ring1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 809748c72679405418cf9dcc8ba44fdd, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 809748c72679405418cf9dcc8ba44fdd, type: 3}
       propertyPath: m_TagString

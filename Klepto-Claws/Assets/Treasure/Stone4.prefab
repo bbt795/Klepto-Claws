@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -3660568766012285334}
   - component: {fileID: -8827174268492133413}
   - component: {fileID: 3958122707824809853}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Stone4
   m_TagString: Treasure1
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 1873214183923761917}
   - component: {fileID: 4431274355778666761}
   - component: {fileID: 1738315070589205900}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
