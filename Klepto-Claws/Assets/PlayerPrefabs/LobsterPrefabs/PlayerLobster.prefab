@@ -587,6 +587,9 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 1
   LastMove: {x: 0, y: 0}
   IsFiring: 0
   CanFire: 1

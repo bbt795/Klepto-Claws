@@ -18,6 +18,9 @@ public class NetworkPlayerController : NetworkComponent
     public InputAction MoveA;
     public InputAction FireA;
 
+    public LayerMask collisionMask;
+    private float distance = 3f;
+
     public Vector2 LastMove;
     public bool IsFiring;
     public bool CanFire = true;
@@ -187,9 +190,29 @@ public class NetworkPlayerController : NetworkComponent
 
         if (IsLocalPlayer)
         {
+            if(this.gameObject.tag == "Lobster")
+            {
+                Vector3 desiredPosition = this.transform.position - this.transform.forward * distance + transform.up;
 
-            Camera.main.transform.position = this.transform.position + this.transform.forward * -3 + this.transform.up;
-            Camera.main.transform.LookAt(this.transform.position);
+                RaycastHit hit;
+                if (Physics.Raycast(desiredPosition, this.transform.forward, out hit, distance, collisionMask))
+                {
+                    Camera.main.transform.position = hit.point;
+                }
+                else
+                {
+                    Camera.main.transform.position = this.transform.position + this.transform.forward * -3 + this.transform.up;
+                }
+
+                //Camera.main.transform.position = this.transform.position + this.transform.forward * -3 + this.transform.up;
+                Camera.main.transform.LookAt(this.transform.position);
+            }
+            else if(this.gameObject.tag == "Human")
+            {
+                Camera.main.transform.position = this.transform.position + this.transform.forward * -3 + this.transform.up;
+                Camera.main.transform.LookAt(this.transform.position);
+            }
+            
 
         }
 
