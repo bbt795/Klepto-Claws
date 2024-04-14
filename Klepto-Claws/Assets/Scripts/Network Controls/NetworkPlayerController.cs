@@ -4,12 +4,10 @@ using UnityEngine;
 using NETWORK_ENGINE;
 using UnityEngine.InputSystem;
 
-//COPIED DIRECTLY FROM SKELETON ASSIGNMENT, MAY NEED/WANT CHANGES!!!
-
 public class NetworkPlayerController : NetworkComponent
 {
     public Material[] PlayerMatArray;
-    //public Renderer PlayerRenderer;
+    public Renderer PlayerRenderer;
     public Rigidbody MyRig;
     public Animator MyAnime;
 
@@ -68,15 +66,15 @@ public class NetworkPlayerController : NetworkComponent
     public override void NetworkedStart()
     {
         
-        /*if(this.gameObject.tag == "Lobster")
+        if(this.gameObject.tag == "Lobster")
         {
 
-            //PlayerRenderer.materials[0] = PlayerMatArray[this.Owner % 3];
-            //PlayerRenderer.material = PlayerMatArray[this.Owner % 3];
+            PlayerRenderer.materials[0] = PlayerMatArray[this.Owner % 3];
+            PlayerRenderer.material = PlayerMatArray[this.Owner % 3];
 
         }
 
-        if (IsServer)
+        /*if (IsServer)
         {
             //3 Human Spawn points (HSpawn#)
             //4 Lobster Spawn points (LSpawn#)

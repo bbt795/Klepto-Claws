@@ -524,6 +524,11 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
   m_PrefabInstance: {fileID: 6759095934715506720}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &6759095934712298368 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700000, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+  m_PrefabInstance: {fileID: 6759095934715506720}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6759095934715475602 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100018, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
@@ -564,7 +569,11 @@ MonoBehaviour:
   MyCore: {fileID: 0}
   MyId: {fileID: 0}
   IsDirty: 0
-  PlayerMatArray: []
+  PlayerMatArray:
+  - {fileID: 2100000, guid: a9398e6de5e20c2459bb7735f5e92e33, type: 2}
+  - {fileID: 2100000, guid: a267ec9006ff531469b322c0339f6859, type: 2}
+  - {fileID: 2100000, guid: 166596013bcdb8c4eb36deb893e922a3, type: 2}
+  PlayerRenderer: {fileID: 6759095934712298368}
   MyRig: {fileID: 545441466435100671}
   MyAnime: {fileID: 6759095934708204864}
   MyInput: {fileID: 0}
