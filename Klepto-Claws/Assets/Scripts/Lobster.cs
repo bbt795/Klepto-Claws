@@ -149,35 +149,6 @@ public class Lobster : NetworkComponent, IPlayer
 
     }
 
-    /*private void OnTriggerStay(Collider c)
-    {
-
-        if (IsServer || IsClient)
-        {
-            Treasure treasure = c.GetComponent<Treasure>();
-
-            if (treasure != null)
-            {
-
-                Debug.Log("i'm in");
-
-                if (isPressed)
-                {
-
-                    TreasureCollected += treasure.treasureValue;
-                    Debug.Log("Treasure collected: " + TreasureCollected);
-                    MyCore.NetDestroyObject(c.GetComponent<NetworkID>().NetId);
-                    Debug.Log("Object destroyed on server");
-                    isPressed = false;
-
-                }
-
-            }
-
-        }
-
-    }*/
-
     private void OnTriggerExit(Collider c)
     {
 

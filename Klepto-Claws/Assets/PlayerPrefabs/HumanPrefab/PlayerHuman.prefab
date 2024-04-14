@@ -86,6 +86,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ee6920164fc87841abc3a1cd4f29a98, type: 3}
       insertIndex: -1
       addedObject: {fileID: -6312819229470889318}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ee6920164fc87841abc3a1cd4f29a98, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 227997156032869078}
   m_SourcePrefab: {fileID: 100100000, guid: 6ee6920164fc87841abc3a1cd4f29a98, type: 3}
 --- !u!95 &2863388208347102230 stripped
 Animator:
@@ -133,6 +136,7 @@ MonoBehaviour:
   MyId: {fileID: 0}
   IsDirty: 0
   PlayerMatArray: []
+  PlayerRenderer: {fileID: 0}
   MyRig: {fileID: -4038620166462283280}
   MyAnime: {fileID: 2863388208347102230}
   MyInput: {fileID: 0}
@@ -341,3 +345,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &227997156032869078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8797553309131979990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b4425e4f3c13448afa0738ede2a4a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyCore: {fileID: 0}
+  MyId: {fileID: 0}
+  IsDirty: 0
