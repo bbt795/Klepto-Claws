@@ -15,6 +15,8 @@ public class Lobster : NetworkComponent, IPlayer
     public bool canCollect;
     public GameObject currentcolliding;
 
+    public GameMaster gameMaster;
+
     public Text Value;
 
     public override void HandleMessage(string flag, string value)
@@ -26,6 +28,7 @@ public class Lobster : NetworkComponent, IPlayer
             TreasureCollected += treasure.treasureValue;
             Debug.Log("Treasure collected: " + TreasureCollected);
             MyCore.NetDestroyObject(currentcolliding.GetComponent<NetworkID>().NetId);
+            gameMaster.RemoveItemFromList(currentcolliding);
             Debug.Log("Object destroyed on server");
             SendUpdate("MONEY", TreasureCollected.ToString());
         }
@@ -60,7 +63,7 @@ public class Lobster : NetworkComponent, IPlayer
     void Start()
     {
 
-
+        gameMaster = FindObjectOfType<GameMaster>();
 
     }
 

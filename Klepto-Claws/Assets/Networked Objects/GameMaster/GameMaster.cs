@@ -18,6 +18,8 @@ public class GameMaster : NetworkComponent
     public List<Vector3> ItemPoints;
     public Vector3 CurrentItemSpawn;
 
+    List<GameObject> spawnedItems = new List<GameObject>();
+
     public override void HandleMessage(string flag, string value)
     {
         if (flag == "GAMESTART")
@@ -93,11 +95,11 @@ public class GameMaster : NetworkComponent
 
             MyId.NotifyDirty();
 
-            int spawnIndex = Random.Range(0, SpawnPoints.Count); // Randomly select initial spawn index
+            int spawnIndex = Random.Range(0, SpawnPoints.Count); //randomly select initial spawn index
 
             foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
             {
-                // Get the current spawn point
+                //get the current spawn point
                 Vector3 currentSpawn = SpawnPoints[spawnIndex];
 
                 if (np.IsHuman == true)
@@ -114,11 +116,11 @@ public class GameMaster : NetworkComponent
                         );
                 }
 
-                // Move to the next spawn point index, and wrap around if necessary
+                //move to the next spawn point index, and wrap around if necessary
                 spawnIndex = (spawnIndex + 1) % SpawnPoints.Count;
             }
 
-            // Shuffle the ItemPoints list to randomize the order
+            //shuffle the ItemPoints list to randomize the order
             for (int i = 0; i < ItemPoints.Count; i++)
             {
                 Vector3 temp = ItemPoints[i];
@@ -127,14 +129,16 @@ public class GameMaster : NetworkComponent
                 ItemPoints[randomIndex] = temp;
             }
 
-            // Loop through each point and spawn a treasure item
+            //loop through each point and spawn a treasure item
             for (int i = 0; i < ItemPoints.Count; i++)
             {
                 Vector3 currentItemSpawn = ItemPoints[i];
 
                 //randomize type
                 int randomTreasure = Random.Range(3, 22);
-                MyCore.NetCreateObject(randomTreasure, randomTreasure, currentItemSpawn, Quaternion.identity);
+                GameObject newItem = MyCore.NetCreateObject(randomTreasure, randomTreasure, currentItemSpawn, Quaternion.identity);
+
+                spawnedItems.Add(newItem);
             }
         }
         while (IsServer)
@@ -145,6 +149,23 @@ public class GameMaster : NetworkComponent
                 SendUpdate("GAMEEND", GameEnd.ToString());
                 IsDirty = false;
             }
+
+            //check for empty spawn points and respawn items after a small delay
+            foreach (Vector3 currentItemSpawn in ItemPoints)
+            {
+                if (IsSpawnPointEmpty(currentItemSpawn))
+                {
+                    //wait for a short delay before respawning the item
+                    yield return new WaitForSeconds(5f);
+
+                    //randomize type
+                    int randomTreasure = Random.Range(3, 22);
+                    GameObject newItem = MyCore.NetCreateObject(randomTreasure, randomTreasure, currentItemSpawn, Quaternion.identity);
+
+                    spawnedItems.Add(newItem);
+                }
+            }
+
             yield return new WaitForSeconds(1);
         }
         yield return new WaitForSeconds(.1f);
@@ -175,4 +196,25 @@ public class GameMaster : NetworkComponent
     {
 
     }
+
+    bool IsSpawnPointEmpty(Vector3 spawnPoint)
+    {
+        foreach (GameObject item in spawnedItems)
+        {
+            if (Vector3.Distance(spawnPoint, item.transform.position) < 0.01f)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void RemoveItemFromList(GameObject item)
+    {
+        if (spawnedItems.Contains(item))
+        {
+            spawnedItems.Remove(item);
+        }
+    }
+
 }
