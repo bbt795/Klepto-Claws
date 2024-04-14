@@ -429,7 +429,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: <value>
+  m_Text: 0
 --- !u!1001 &6759095934715506720
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -835,6 +835,7 @@ MonoBehaviour:
   MaterialArray: []
   canCollect: 0
   currentcolliding: {fileID: 0}
+  gameMaster: {fileID: 0}
   Value: {fileID: 4423228592050143967}
 --- !u!4 &6759095934715898546 stripped
 Transform:

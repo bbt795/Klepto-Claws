@@ -26,10 +26,10 @@ public class Lobster : NetworkComponent, IPlayer
         {
             Treasure treasure = currentcolliding.GetComponent<Treasure>();
             TreasureCollected += treasure.treasureValue;
-            Debug.Log("Treasure collected: " + TreasureCollected);
+            //Debug.Log("Treasure collected: " + TreasureCollected);
             MyCore.NetDestroyObject(currentcolliding.GetComponent<NetworkID>().NetId);
             gameMaster.RemoveItemFromList(currentcolliding);
-            Debug.Log("Object destroyed on server");
+            //Debug.Log("Object destroyed on server");
             SendUpdate("MONEY", TreasureCollected.ToString());
         }
         if(flag == "MONEY")

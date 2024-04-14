@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NETWORK_ENGINE;
+//using System;
 
 public class GameMaster : NetworkComponent
 {
@@ -35,23 +36,54 @@ public class GameMaster : NetworkComponent
         if (flag == "GAMEEND")
         {
             GameEnd = true;
-            //StartCoroutine(StartGameEnd());
+            StartCoroutine(StartGameEnd());
+        }
+        if(flag == "MONEY")
+        {
+            if (IsServer)
+            {
+
+                foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
+                {
+
+                    MoneyStolen += np.MoneyCollected;
+                    Debug.Log("Money: " + MoneyStolen);
+
+                }
+
+                SendUpdate("MONEY", MoneyStolen.ToString());
+
+            }
+
+            if (IsClient)
+            {
+
+                MoneyStolen = float.Parse(value);
+
+            }
+
         }
     }
     public override void NetworkedStart()
     {
-        MoneyStolen = 5.88f;
+        MoneyStolen = 0f;
     }
 
     public IEnumerator StartGameEnd()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(30);
+
+        SendCommand("MONEY", "");
+
         foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
         {
             //np.transform.GetChild(0).gameObject.SetActive(true);
             np.UI_Money(MoneyStolen);
             np.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+          
         }
+
+        //MyCore.DisconnectServer();
 
     }
     public override IEnumerator SlowUpdate()
