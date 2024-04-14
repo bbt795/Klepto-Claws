@@ -42,13 +42,17 @@ public class NPM : NetworkComponent
                 }
 
                 //tmpObject.text = "Money Collected: " + value;
-                tmpObject.text = "Money Collected: " + MoneyCollected;
+                //tmpObject.text = "Money Collected: " + MoneyCollected;
                 Debug.Log("Money on NPM: " + MoneyCollected);
                 SendUpdate("MONEY", value.ToString());
             }
             if(IsClient)
             {
-                tmpObject.text = "Money Collected: " + int.Parse(value);
+                //tmpObject.text = "Money Collected: " + int.Parse(value);
+                foreach (Lobster pl in GameObject.FindObjectsOfType<Lobster>())
+                {
+                    MoneyCollected += pl.TreasureCollected;
+                }
             }
         }
 

@@ -179,6 +179,13 @@ public class GameMaster : NetworkComponent
                 IsDirty = false;
             }
 
+            //counts every NPM and adds it to the MoneyStolen
+            foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
+            {
+                MoneyStolen += np.MoneyCollected;
+            }
+            Debug.Log("Money on GameMaster: " + MoneyStolen); //always ends up at 0 :(
+
             //check for empty spawn points and respawn items after a small delay
             foreach (Vector3 currentItemSpawn in ItemPoints)
             {
