@@ -25,6 +25,7 @@ public class NetworkPlayerController : NetworkComponent
     public bool GameOver = false;
 
     public bool Captured;
+    private static int lobsterCount = 0;
 
     public override void HandleMessage(string flag, string value)
     {
@@ -69,8 +70,9 @@ public class NetworkPlayerController : NetworkComponent
         if(this.gameObject.tag == "Lobster")
         {
 
-            PlayerRenderer.materials[0] = PlayerMatArray[this.Owner % 3];
-            PlayerRenderer.material = PlayerMatArray[this.Owner % 3];
+            PlayerRenderer.materials[0] = PlayerMatArray[lobsterCount];
+            PlayerRenderer.material = PlayerMatArray[lobsterCount];
+            lobsterCount++;
 
         }
 
