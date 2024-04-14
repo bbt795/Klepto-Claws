@@ -8,7 +8,7 @@ using NETWORK_ENGINE;
 public class NPM : NetworkComponent
 {
     public bool IsReady;
-    public float MoneyCollected;
+    public int MoneyCollected;
 
     public static int lobsterCount;
     public static int humanCount;
@@ -32,16 +32,23 @@ public class NPM : NetworkComponent
         }
         if(flag == "MONEY")
         {
-            MoneyCollected = float.Parse(value);
+            MoneyCollected = int.Parse(value);
+
             if(IsServer)
             {
+                foreach (Lobster pl in GameObject.FindObjectsOfType<Lobster>())
+                {
+                    MoneyCollected += pl.TreasureCollected;
+                }
+
                 //tmpObject.text = "Money Collected: " + value;
                 tmpObject.text = "Money Collected: " + MoneyCollected;
+                Debug.Log("Money on NPM: " + MoneyCollected);
                 SendUpdate("MONEY", value.ToString());
             }
             if(IsClient)
             {
-                tmpObject.text = "Money Collected: " + float.Parse(value);
+                tmpObject.text = "Money Collected: " + int.Parse(value);
             }
         }
 
@@ -184,7 +191,7 @@ public class NPM : NetworkComponent
         }
     }
 
-    public void UI_Money(float money)
+    public void UI_Money(int money)
     {
         SendCommand("MONEY", money.ToString());
     }

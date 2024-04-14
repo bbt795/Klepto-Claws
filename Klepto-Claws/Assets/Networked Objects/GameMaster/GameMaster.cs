@@ -9,7 +9,7 @@ public class GameMaster : NetworkComponent
     public bool GameStarted = false;
     public bool GameEnd = false;
 
-    public float MoneyStolen;
+    public int MoneyStolen;
     public int humanCount;
     public int lobsterCount;
 
@@ -40,40 +40,36 @@ public class GameMaster : NetworkComponent
         }
         if(flag == "MONEY")
         {
+            MoneyStolen = int.Parse(value);
+            Debug.Log("Money on GameMaster: " + MoneyStolen);
+
             if (IsServer)
             {
-
                 foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
                 {
-
                     MoneyStolen += np.MoneyCollected;
-                    Debug.Log("Money: " + MoneyStolen);
-
                 }
 
+                Debug.Log("Money on GameMaster: " + MoneyStolen);
                 SendUpdate("MONEY", MoneyStolen.ToString());
-
             }
-
             if (IsClient)
             {
-
-                MoneyStolen = float.Parse(value);
-
+                //tmpObject.text = "Money Collected: " + int.Parse(value);
             }
 
         }
     }
     public override void NetworkedStart()
     {
-        MoneyStolen = 0f;
+        MoneyStolen = 0;
     }
 
     public IEnumerator StartGameEnd()
     {
         yield return new WaitForSeconds(30);
 
-        SendCommand("MONEY", "");
+        SendCommand("MONEY", MoneyStolen.ToString());
 
         foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
         {
@@ -179,6 +175,7 @@ public class GameMaster : NetworkComponent
             {
                 SendUpdate("GAMESTART", GameStarted.ToString());
                 SendUpdate("GAMEEND", GameEnd.ToString());
+                SendUpdate("MONEY", MoneyStolen.ToString());
                 IsDirty = false;
             }
 
