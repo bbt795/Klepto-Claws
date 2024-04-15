@@ -14,6 +14,7 @@ TagManager:
   - Treasure5
   - Treasure6
   - ItemPoint
+  - Tank
   layers:
   - Default
   - TransparentFX
