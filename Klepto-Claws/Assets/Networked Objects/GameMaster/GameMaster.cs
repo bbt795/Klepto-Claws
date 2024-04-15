@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NETWORK_ENGINE;
+using TMPro;
 //using System;
 
 public class GameMaster : NetworkComponent
 {
     public bool GameStarted = false;
-    public bool GameEnd = false;
+    public bool GameRunning = false;
+    public bool GameEnding = false;
+
+    private float elapsedTime = 0f;
+    private float timeout = 10f; //300f is 5 minutes
 
     public int StartingMoney = 10000;
     public int MoneyStolen;
@@ -28,20 +33,31 @@ public class GameMaster : NetworkComponent
         {
             //   Want to disable PlayerInfo
             GameStarted = true;
+            GameRunning = true;
             foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
             {
                 np.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
                 //np.transform.GetChild(0).gameObject.SetActive(false);
             }
+            StartCoroutine(UpdateTimer());
         }
         if (flag == "GAMEEND")
         {
-            GameEnd = true;
-            StartCoroutine(StartGameEnd());
+            GameRunning = false;
+            GameEnding = true;
+            Debug.Log("Game Ending Here");
+            foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
+            {
+                //np.transform.GetChild(0).gameObject.SetActive(true);
+                //np.UI_Money(MoneyStolen);
+                np.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+            }
+            
+            //Debug.Log("Money on GameMaster: " + MoneyStolen);
         }
         if(flag == "MONEY")
         {
-            MoneyStolen = int.Parse(value);
+            
             if(IsServer)
             {
                 MoneyStolen = 0;
@@ -53,7 +69,11 @@ public class GameMaster : NetworkComponent
                 SendUpdate("MONEY", MoneyStolen.ToString());
                 Debug.Log("Money on GameMaster: " + MoneyStolen);
             }
-            
+            if(IsClient)
+            {
+                MoneyStolen = int.Parse(value);
+            }
+            MoneyStolen = int.Parse(value);
         }
     }
     public override void NetworkedStart()
@@ -61,18 +81,39 @@ public class GameMaster : NetworkComponent
         MoneyStolen = 0;
     }
 
-    public IEnumerator StartGameEnd()
+    public IEnumerator UpdateTimer()
     {
-        yield return new WaitForSeconds(30);
+        while(GameRunning)
+        {
+            yield return new WaitForSeconds(1f);
+            elapsedTime += 1f;
+            Debug.Log(elapsedTime);
+            if(elapsedTime >= timeout)
+            {
+                //SendCommand("GAMEEND", "true");
+                GameEnd();
+                yield break;
+            }
+        }
+        
+    }
 
+    public void GameEnd()
+    {
+        //yield return new WaitForSeconds(30);
+        GameRunning = false;
+        GameEnding = true;
+        MoneyStolen = 0;
+        SendCommand("MONEY", MoneyStolen.ToString());
+        int finalStolen = MoneyStolen;
         foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
         {
             //np.transform.GetChild(0).gameObject.SetActive(true);
-            np.UI_Money(MoneyStolen);
+            //np.UI_Money(MoneyStolen);
             np.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+            np.transform.GetChild(0).GetChild(1).GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Money Stolen: " + finalStolen;
           
-        }
-        SendCommand("MONEY", MoneyStolen.ToString());
+        } 
         Debug.Log("Money on GameMaster: " + MoneyStolen);
 
         //MyCore.DisconnectServer();
@@ -102,9 +143,10 @@ public class GameMaster : NetworkComponent
                 readyGo = false;
             }
             GameStarted = readyGo;
+            GameRunning = readyGo;
             yield return new WaitForSeconds(2);
         }
-        if (IsServer)
+        if (IsServer && GameRunning)
         {
             //while(all players have not hit ready)
             //Wait
@@ -112,7 +154,7 @@ public class GameMaster : NetworkComponent
             SendUpdate("GAMESTART", GameStarted.ToString());
             SendUpdate("MONEY", MoneyStolen.ToString());
             Debug.Log("Game Master Money: " + MoneyStolen);
-            //SendUpdate("GAMEEND", GameEnd.ToString());
+            //SendUpdate("GAMEEND", GameEnding.ToString());
 
             //Go to each NetworkPlayerManager and look at their options
             //Create the appropriate character for their options
@@ -167,7 +209,7 @@ public class GameMaster : NetworkComponent
                 spawnedItems.Add(newItem);
             }
         }
-        while (IsServer)
+        while (IsServer && GameRunning)
         {
             
 
@@ -198,7 +240,7 @@ public class GameMaster : NetworkComponent
             if (IsDirty)
             {
                 SendUpdate("GAMESTART", GameStarted.ToString());
-                //SendUpdate("GAMEEND", GameEnd.ToString());
+                //SendUpdate("GAMEEND", GameEnding.ToString());
                 SendUpdate("MONEY", MoneyStolen.ToString());
                 IsDirty = false;
             }
