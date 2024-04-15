@@ -133,7 +133,7 @@ public class Lobster : NetworkComponent, IPlayer
         //MyCore.NetDestroyObject(MyId.NetId);
         //shouldnt be MyId.NetId but idk how to access other objects' net IDs :(
 
-        if (IsServer || IsClient)
+        if (IsServer || IsLocalPlayer)
         {
 
             if (c.gameObject.GetComponent<Treasure>() != null)
@@ -152,7 +152,7 @@ public class Lobster : NetworkComponent, IPlayer
     private void OnTriggerExit(Collider c)
     {
 
-        if (IsServer || IsClient)
+        if (IsServer || IsLocalPlayer)
         {
 
             if (c.gameObject.GetComponent<Treasure>() != null)

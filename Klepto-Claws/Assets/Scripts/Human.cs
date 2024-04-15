@@ -74,7 +74,7 @@ public class Human : NetworkComponent, IPlayer
     private void OnTriggerEnter(Collider c)
     {
         
-        if(IsServer || IsClient)
+        if(IsServer || IsLocalPlayer)
         {
 
             if(c.gameObject.tag == "Lobster")
@@ -102,7 +102,7 @@ public class Human : NetworkComponent, IPlayer
     private void OnTriggerExit(Collider c)
     {
 
-        if (IsServer || IsClient)
+        if (IsServer || IsLocalPlayer)
         {
 
             if (c.gameObject.tag == "Lobster")
