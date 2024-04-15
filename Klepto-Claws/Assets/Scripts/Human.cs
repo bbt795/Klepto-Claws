@@ -11,6 +11,7 @@ public class Human : NetworkComponent, IPlayer
 
     public bool canCapture;
     public bool canTank;
+    public bool isCapturing;
     public GameObject currentColliding;
     public int capturedTreasure;
 
@@ -18,19 +19,22 @@ public class Human : NetworkComponent, IPlayer
     {
         if(flag == "CAPTURE" && canCapture)
         {
-
+            //Trigger capture animation, figure out how to have human hold lobster/find alt solution, start struggle mechanic
             Lobster player = currentColliding.GetComponent<Lobster>();
+            isCapturing = true;
 
             //Insert however we want to deal with lobster here
 
         }
 
-        if(flag == "TANK")
+        if(flag == "TANK" && canTank && isCapturing)
         {
-
+            //Need to put lobster in tank, remove treasure, and have it replaced on map
+            //Potentially add a check so human can't interact unless already holding a lobster
             Lobster player = currentColliding.GetComponent<Lobster>();
             capturedTreasure = player.TreasureCollected;
             player.TreasureCollected = 0;
+            isCapturing = false;
 
         }
     }
@@ -59,7 +63,7 @@ public class Human : NetworkComponent, IPlayer
 
                 SendCommand("CAPTURE", "");
 
-            } else if (currentColliding.tag == "Tank")
+            }else if (currentColliding.tag == "Tank")
             {
 
                 SendCommand("TANK", "");
@@ -84,7 +88,7 @@ public class Human : NetworkComponent, IPlayer
                 c.gameObject.transform.GetChild(3).gameObject.SetActive(true);
                 canCapture = true;
 
-            } else if(c.gameObject.tag == "Tank")
+            } else if(c.gameObject.tag == "Tank" && isCapturing)
             {
 
                 Debug.Log("Yoink");

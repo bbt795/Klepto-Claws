@@ -95,7 +95,6 @@ public class NPM : NetworkComponent
                 }
 
                 SendUpdate("HTEAM", humanCount.ToString());
-                Debug.Log(humanCount);
                 //I give up for tonight
                 //it's counting correctly, but not sync'ing the interactable?
 
@@ -160,7 +159,6 @@ public class NPM : NetworkComponent
                 }
 
                 SendUpdate("LTEAM", lobsterCount.ToString());
-                Debug.Log(lobsterCount);
             }
 
             if (IsClient)
