@@ -32,10 +32,11 @@ public class NPM : NetworkComponent
         }
         if(flag == "MONEY")
         {
-            MoneyCollected = int.Parse(value);
+            MoneyCollected = 0;
 
             if(IsServer)
             {
+
                 foreach (Lobster pl in GameObject.FindObjectsOfType<Lobster>())
                 {
                     MoneyCollected += pl.TreasureCollected;

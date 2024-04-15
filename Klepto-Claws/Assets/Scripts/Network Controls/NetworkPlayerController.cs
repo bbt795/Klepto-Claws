@@ -177,7 +177,7 @@ public class NetworkPlayerController : NetworkComponent
     // Update is called once per frame
     void Update()
     {
-        Captured = MyAnime.GetBool("Caught");
+        //Captured = MyAnime.GetBool("Caught");
 
         if (IsServer)
         {
@@ -201,7 +201,8 @@ public class NetworkPlayerController : NetworkComponent
                 }
                 else
                 {
-                    Camera.main.transform.position = this.transform.position + this.transform.forward * -3 + this.transform.up;
+                    //Camera.main.transform.position = this.transform.position + this.transform.forward * -3 + this.transform.up;
+                    Camera.main.transform.position = desiredPosition;
                 }
 
                 Camera.main.transform.LookAt(this.transform.position);

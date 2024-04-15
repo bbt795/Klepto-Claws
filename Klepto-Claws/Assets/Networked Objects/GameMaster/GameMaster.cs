@@ -9,6 +9,7 @@ public class GameMaster : NetworkComponent
     public bool GameStarted = false;
     public bool GameEnd = false;
 
+    public int StartingMoney = 10000;
     public int MoneyStolen;
     public int humanCount;
     public int lobsterCount;
@@ -41,23 +42,18 @@ public class GameMaster : NetworkComponent
         if(flag == "MONEY")
         {
             MoneyStolen = int.Parse(value);
-            Debug.Log("Money on GameMaster: " + MoneyStolen);
-
-            if (IsServer)
+            if(IsServer)
             {
-                foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
+                MoneyStolen = 0;
+                //Debug.Log("Money on GameMaster: " + MoneyStolen);
+                foreach (Lobster pl in GameObject.FindObjectsOfType<Lobster>())
                 {
-                    MoneyStolen += np.MoneyCollected;
+                    MoneyStolen += pl.TreasureCollected;
                 }
-
-                Debug.Log("Money on GameMaster: " + MoneyStolen);
                 SendUpdate("MONEY", MoneyStolen.ToString());
+                Debug.Log("Money on GameMaster: " + MoneyStolen);
             }
-            if (IsClient)
-            {
-                //tmpObject.text = "Money Collected: " + int.Parse(value);
-            }
-
+            
         }
     }
     public override void NetworkedStart()
@@ -69,8 +65,6 @@ public class GameMaster : NetworkComponent
     {
         yield return new WaitForSeconds(30);
 
-        SendCommand("MONEY", MoneyStolen.ToString());
-
         foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
         {
             //np.transform.GetChild(0).gameObject.SetActive(true);
@@ -78,6 +72,8 @@ public class GameMaster : NetworkComponent
             np.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
           
         }
+        SendCommand("MONEY", MoneyStolen.ToString());
+        Debug.Log("Money on GameMaster: " + MoneyStolen);
 
         //MyCore.DisconnectServer();
 
@@ -114,7 +110,9 @@ public class GameMaster : NetworkComponent
             //Wait
 
             SendUpdate("GAMESTART", GameStarted.ToString());
-            SendUpdate("GAMEEND", GameEnd.ToString());
+            SendUpdate("MONEY", MoneyStolen.ToString());
+            Debug.Log("Game Master Money: " + MoneyStolen);
+            //SendUpdate("GAMEEND", GameEnd.ToString());
 
             //Go to each NetworkPlayerManager and look at their options
             //Create the appropriate character for their options
@@ -171,20 +169,15 @@ public class GameMaster : NetworkComponent
         }
         while (IsServer)
         {
-            if (IsDirty)
-            {
-                SendUpdate("GAMESTART", GameStarted.ToString());
-                SendUpdate("GAMEEND", GameEnd.ToString());
-                SendUpdate("MONEY", MoneyStolen.ToString());
-                IsDirty = false;
-            }
+            
 
             //counts every NPM and adds it to the MoneyStolen
-            foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
+            MoneyStolen = 0;
+            foreach (Lobster pl in GameObject.FindObjectsOfType<Lobster>())
             {
-                MoneyStolen += np.MoneyCollected;
+                MoneyStolen += pl.TreasureCollected;
             }
-            Debug.Log("Money on GameMaster: " + MoneyStolen); //always ends up at 0 :(
+            //Debug.Log("Money on GameMaster: " + MoneyStolen); //always ends up at 0 :(
 
             //check for empty spawn points and respawn items after a small delay
             foreach (Vector3 currentItemSpawn in ItemPoints)
@@ -202,6 +195,13 @@ public class GameMaster : NetworkComponent
                 }
             }
 
+            if (IsDirty)
+            {
+                SendUpdate("GAMESTART", GameStarted.ToString());
+                //SendUpdate("GAMEEND", GameEnd.ToString());
+                SendUpdate("MONEY", MoneyStolen.ToString());
+                IsDirty = false;
+            }
             yield return new WaitForSeconds(1);
         }
         yield return new WaitForSeconds(.1f);
