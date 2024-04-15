@@ -822,6 +822,8 @@ MonoBehaviour:
   IsDirty: 0
   IsReady: 0
   MoneyCollected: 0
+  IsLobster: 0
+  IsHuman: 0
   tmpObject: {fileID: 7521731090698960054}
   humanToggle: {fileID: 405772588594667508}
   lobsterToggle: {fileID: 8152040126978807811}
