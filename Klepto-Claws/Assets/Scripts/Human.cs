@@ -20,10 +20,17 @@ public class Human : NetworkComponent, IPlayer
         {
 
             Lobster player = currentColliding.GetComponent<Lobster>();
-            capturedTreasure = player.TreasureCollected;
-            player.TreasureCollected = 0;
 
             //Insert however we want to deal with lobster here
+
+        }
+
+        if(flag == "TANK")
+        {
+
+            Lobster player = currentColliding.GetComponent<Lobster>();
+            capturedTreasure = player.TreasureCollected;
+            player.TreasureCollected = 0;
 
         }
     }
@@ -47,7 +54,18 @@ public class Human : NetworkComponent, IPlayer
         if (context.started)
         {
             Debug.Log("Human E Push");
-            SendCommand("CAPTURE", "");
+            if(currentColliding.tag == "Lobster")
+            {
+
+                SendCommand("CAPTURE", "");
+
+            } else if (currentColliding.tag == "Tank")
+            {
+
+                SendCommand("TANK", "");
+
+            }
+            
 
         }
 
@@ -56,17 +74,17 @@ public class Human : NetworkComponent, IPlayer
     private void OnTriggerEnter(Collider c)
     {
         
-        if(IsServer || IsClient)
+        if(IsServer || IsLocalPlayer)
         {
 
-            if(c.gameObject.GetComponent<Lobster>() != null)
+            if(c.gameObject.tag == "Lobster")
             {
 
                 Debug.Log("Yeet");
                 c.gameObject.transform.GetChild(3).gameObject.SetActive(true);
                 canCapture = true;
 
-            } else if(c.tag == "Tank")
+            } else if(c.gameObject.tag == "Tank")
             {
 
                 Debug.Log("Yoink");
@@ -84,17 +102,17 @@ public class Human : NetworkComponent, IPlayer
     private void OnTriggerExit(Collider c)
     {
 
-        if (IsServer || IsClient)
+        if (IsServer || IsLocalPlayer)
         {
 
-            if (c.gameObject.GetComponent<Lobster>() != null)
+            if (c.gameObject.tag == "Lobster")
             {
 
                 Debug.Log("Yuh");
                 c.gameObject.transform.GetChild(3).gameObject.SetActive(false);
                 canCapture = false;
 
-            }else if (c.tag == "Tank")
+            }else if (c.gameObject.tag == "Tank")
             {
 
                 Debug.Log("Yaga");
