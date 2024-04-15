@@ -51,6 +51,7 @@ public class GameMaster : NetworkComponent
                 //np.transform.GetChild(0).gameObject.SetActive(true);
                 //np.UI_Money(MoneyStolen);
                 np.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+                np.transform.GetChild(0).GetChild(1).GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Money Stolen: " + MoneyStolen;
             }
             
             //Debug.Log("Money on GameMaster: " + MoneyStolen);
@@ -60,14 +61,7 @@ public class GameMaster : NetworkComponent
             
             if(IsServer)
             {
-                MoneyStolen = 0;
-                //Debug.Log("Money on GameMaster: " + MoneyStolen);
-                foreach (Lobster pl in GameObject.FindObjectsOfType<Lobster>())
-                {
-                    MoneyStolen += pl.TreasureCollected;
-                }
-                SendUpdate("MONEY", MoneyStolen.ToString());
-                Debug.Log("Money on GameMaster: " + MoneyStolen);
+                
             }
             if(IsClient)
             {
@@ -83,7 +77,7 @@ public class GameMaster : NetworkComponent
 
     public IEnumerator UpdateTimer()
     {
-        while(GameRunning)
+        while(GameRunning && IsServer)
         {
             yield return new WaitForSeconds(1f);
             elapsedTime += 1f;
@@ -103,17 +97,20 @@ public class GameMaster : NetworkComponent
         //yield return new WaitForSeconds(30);
         GameRunning = false;
         GameEnding = true;
+        SendUpdate("GAMEEND", "true");
         MoneyStolen = 0;
-        SendCommand("MONEY", MoneyStolen.ToString());
+        SendUpdate("MONEY", MoneyStolen.ToString());
         int finalStolen = MoneyStolen;
         foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
         {
             //np.transform.GetChild(0).gameObject.SetActive(true);
             //np.UI_Money(MoneyStolen);
             np.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
-            np.transform.GetChild(0).GetChild(1).GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Money Stolen: " + finalStolen;
+            //np.transform.GetChild(0).GetChild(1).GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Money Stolen: " + finalStolen;
+            np.UI_Money(finalStolen);
           
-        } 
+        }
+        SendUpdate("MONEY", MoneyStolen.ToString());
         Debug.Log("Money on GameMaster: " + MoneyStolen);
 
         //MyCore.DisconnectServer();
@@ -152,6 +149,8 @@ public class GameMaster : NetworkComponent
             //Wait
 
             SendUpdate("GAMESTART", GameStarted.ToString());
+            StartCoroutine(UpdateTimer());
+            
             SendUpdate("MONEY", MoneyStolen.ToString());
             Debug.Log("Game Master Money: " + MoneyStolen);
             //SendUpdate("GAMEEND", GameEnding.ToString());
@@ -219,6 +218,7 @@ public class GameMaster : NetworkComponent
             {
                 MoneyStolen += pl.TreasureCollected;
             }
+            SendUpdate("MONEY", MoneyStolen.ToString());
             //Debug.Log("Money on GameMaster: " + MoneyStolen); //always ends up at 0 :(
 
             //check for empty spawn points and respawn items after a small delay

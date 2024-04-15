@@ -32,28 +32,28 @@ public class NPM : NetworkComponent
         }
         if(flag == "MONEY")
         {
-            MoneyCollected = 0;
+            MoneyCollected = int.Parse(value);
 
             if(IsServer)
             {
 
-                foreach (Lobster pl in GameObject.FindObjectsOfType<Lobster>())
-                {
-                    MoneyCollected += pl.TreasureCollected;
-                }
+                // foreach (Lobster pl in GameObject.FindObjectsOfType<Lobster>())
+                // {
+                //     MoneyCollected += pl.TreasureCollected;
+                // }
 
                 //tmpObject.text = "Money Collected: " + value;
-                //tmpObject.text = "Money Collected: " + MoneyCollected;
+                tmpObject.text = "Money Stolen: " + MoneyCollected.ToString();
                 Debug.Log("Money on NPM: " + MoneyCollected);
-                SendUpdate("MONEY", value.ToString());
+                SendUpdate("MONEY", MoneyCollected.ToString());
             }
             if(IsClient)
             {
-                //tmpObject.text = "Money Collected: " + int.Parse(value);
-                foreach (Lobster pl in GameObject.FindObjectsOfType<Lobster>())
-                {
-                    MoneyCollected += pl.TreasureCollected;
-                }
+                tmpObject.text = "Money Stolen: " + MoneyCollected.ToString();
+                // foreach (Lobster pl in GameObject.FindObjectsOfType<Lobster>())
+                // {
+                //     MoneyCollected += pl.TreasureCollected;
+                // }
             }
         }
 
