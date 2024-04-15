@@ -82,7 +82,7 @@ public class GameMaster : NetworkComponent
             yield return new WaitForSeconds(1f);
             elapsedTime += 1f;
             Debug.Log(elapsedTime);
-            if(elapsedTime >= timeout)
+            if(elapsedTime >= timeout || (StartingMoney * 0.75) < MoneyStolen)
             {
                 //SendCommand("GAMEEND", "true");
                 GameEnd();
@@ -131,7 +131,7 @@ public class GameMaster : NetworkComponent
                 }
                 count++;
             }
-            if (count < 1)
+            if (count < 4)
             {
                 readyGo = false;
             }
