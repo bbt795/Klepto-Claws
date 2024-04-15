@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1761742456726770228}
   - component: {fileID: 4301312398859117985}
   - component: {fileID: 8846049508722018746}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: E-Key_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1739869443364282982}
   - component: {fileID: 1309068114355230510}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cage Prefab
   m_TagString: Tank
   m_Icon: {fileID: 0}
@@ -221,6 +221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Glass Cage
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 36b11c55d7fd64bb68cea0a780b4d2e0, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -290,6 +294,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ff5862b0c7a2947bba98732f114f0347, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ff5862b0c7a2947bba98732f114f0347, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: ff0e35ca5bc894cc7b7551a57c28eb9c, type: 3}
       propertyPath: m_Materials.Array.data[0]
