@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6804780843827602400}
   - component: {fileID: 6786994041910605509}
   - component: {fileID: 7317321673197404984}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 8999869043212309270}
   - component: {fileID: 3084756715404362061}
   - component: {fileID: 4878130927812566456}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Treasure Collected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 6549064263572049118}
   - component: {fileID: 7960097567443158715}
   - component: {fileID: 7048400683629531083}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 3239950056337601043}
   - component: {fileID: 3484277937016532173}
   - component: {fileID: 750965129275234672}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 6912489341359558419}
   - component: {fileID: 8320909617411291374}
   - component: {fileID: 8920467258673159989}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: E-Key_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 5696800179169747258}
   - component: {fileID: 2472346837623119255}
   - component: {fileID: 4423228592050143967}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -535,13 +535,73 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 100000, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 100018, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
       propertyPath: m_Name
       value: PlayerLobster
       objectReference: {fileID: 0}
     - target: {fileID: 100018, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
       propertyPath: m_TagString
       value: Lobster
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100028, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
       propertyPath: m_LocalPosition.x

@@ -192,7 +192,7 @@ public class NetworkPlayerController : NetworkComponent
         {
             if(this.gameObject.tag == "Lobster")
             {
-                Vector3 desiredPosition = this.transform.position - this.transform.forward * distance + transform.up;
+                Vector3 desiredPosition = this.transform.position - this.transform.forward * distance + this.transform.up;
 
                 RaycastHit hit;
                 if (Physics.Raycast(desiredPosition, this.transform.forward, out hit, distance, collisionMask))
@@ -201,15 +201,14 @@ public class NetworkPlayerController : NetworkComponent
                 }
                 else
                 {
-                    //Camera.main.transform.position = this.transform.position + this.transform.forward * -3 + this.transform.up;
-                    Camera.main.transform.position = desiredPosition;
+                    Camera.main.transform.position = this.transform.position + this.transform.forward * -3 + this.transform.up;
                 }
 
                 Camera.main.transform.LookAt(this.transform.position);
             }
             else if(this.gameObject.tag == "Human")
             {
-                Vector3 desiredPosition = this.transform.position - this.transform.forward * distance + transform.up;
+                Vector3 desiredPosition = this.transform.position - this.transform.forward * distance + this.transform.up;
 
                 RaycastHit hit;
                 if (Physics.Raycast(desiredPosition, this.transform.forward, out hit, distance, collisionMask))
