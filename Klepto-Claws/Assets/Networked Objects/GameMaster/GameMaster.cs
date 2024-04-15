@@ -135,7 +135,7 @@ public class GameMaster : NetworkComponent
             {
                 readyGo = false;
             }
-            if (NPM.humanCount != 1 && NPM.lobsterCount < 3)
+            if (NPM.humanCount != 1 && NPM.lobsterCount != 3)
             {
                 readyGo = false;
             }
