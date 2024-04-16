@@ -79,7 +79,10 @@ public class GameMaster : NetworkComponent
             
             if(IsServer)
             {
-                
+                if((StartingMoney * 0.05f) < int.Parse(value))
+                {
+                    GameEnd();
+                }
             }
             if(IsClient)
             {
@@ -100,7 +103,7 @@ public class GameMaster : NetworkComponent
             yield return new WaitForSeconds(1f);
             elapsedTime += 1f;
             Debug.Log(elapsedTime);
-            if(elapsedTime >= timeout || (StartingMoney * 0.75) < MoneyStolen)
+            if(elapsedTime >= timeout)
             {
                 //SendCommand("GAMEEND", "true");
                 GameEnd();
@@ -237,6 +240,10 @@ public class GameMaster : NetworkComponent
                 MoneyStolen += pl.TreasureCollected;
             }
             SendUpdate("MONEY", MoneyStolen.ToString());
+            // if((StartingMoney * 0.05f) < MoneyStolen)
+            // {
+            //     GameEnd();
+            // }
             //Debug.Log("Money on GameMaster: " + MoneyStolen); //always ends up at 0 :(
 
             //check for empty spawn points and respawn items after a small delay

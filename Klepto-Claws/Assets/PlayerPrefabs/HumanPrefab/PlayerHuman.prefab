@@ -657,19 +657,7 @@ MonoBehaviour:
     m_ActionId: 4f02c387-406e-47d9-9861-1a45f718767b
     m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -8394262164672688589}
-        m_TargetAssemblyTypeName: NetworkPlayerController, Assembly-CSharp
-        m_MethodName: OnFire
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 9048f1ce-49bd-4fff-88e1-f041b9a58c09
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -713,7 +701,19 @@ MonoBehaviour:
     m_ActionId: dbb3fa0d-05d9-444a-a02d-b44c5f164a4b
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -8394262164672688589}
+        m_TargetAssemblyTypeName: NetworkPlayerController, Assembly-CSharp
+        m_MethodName: OnFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e1699d54-5277-4fcd-8956-5d9ed5f19c86
     m_ActionName: Player/Capture[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
@@ -738,5 +738,6 @@ MonoBehaviour:
   IsDirty: 0
   canCapture: 0
   canTank: 0
+  isCapturing: 0
   currentColliding: {fileID: 0}
   capturedTreasure: 0
