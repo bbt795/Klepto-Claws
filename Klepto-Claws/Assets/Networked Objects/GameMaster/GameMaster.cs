@@ -80,16 +80,26 @@ public class GameMaster : NetworkComponent
 
         if (flag == "MONEY")
         {
-            
-            if(IsServer)
+            MoneyStolen = int.Parse(value);
+
+            if (IsServer)
             {
                 Debug.Log("Money on GM: " + MoneyStolen);
             }
             if(IsClient)
             {
                 MoneyStolen = int.Parse(value);
+
+                //started adding stuff here for overall treasure !!
+                /*foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
+                {
+                    if(np.IsLobster)
+                    {
+                        np.transform.GetChild(0).GetChild(2).GetChild(3).GetComponentInChildren<TextMeshProUGUI>().text = MoneyStolen.ToString();
+                    }
+
+                }*/
             }
-            MoneyStolen = int.Parse(value);
         }
 
         if(flag == "TIME")
