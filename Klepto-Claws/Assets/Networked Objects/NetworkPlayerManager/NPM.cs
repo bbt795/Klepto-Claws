@@ -22,6 +22,9 @@ public class NPM : NetworkComponent
     public Toggle humanToggle;
     public Toggle lobsterToggle;
 
+    public Image humanImg;
+    public Image lobsterImg;
+
     public override void HandleMessage(string flag, string value)
     {
         if(flag == "READY")
@@ -225,6 +228,10 @@ public class NPM : NetworkComponent
 
         lobsterToggle.interactable = !team;
         SendCommand("HTEAM",team.ToString());
+        if(IsLocalPlayer)
+        {
+            humanImg.gameObject.SetActive(true);
+        }
 
     }
 
@@ -233,6 +240,10 @@ public class NPM : NetworkComponent
 
         humanToggle.interactable = !team;
         SendCommand("LTEAM", team.ToString());
+        if(IsLocalPlayer)
+        {
+            lobsterImg.gameObject.SetActive(true);
+        }
 
     }
 
@@ -270,7 +281,8 @@ public class NPM : NetworkComponent
     // Start is called before the first frame update
     void Start()
     {
-        
+        humanImg = transform.Find("Human").GetComponent<Image>();
+        lobsterImg = transform.Find("Lobster").GetComponent<Image>();
     }
 
     // Update is called once per frame

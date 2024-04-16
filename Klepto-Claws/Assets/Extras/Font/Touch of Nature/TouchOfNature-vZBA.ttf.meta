@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6de4796a4bf6ed045acfa590b61e58bf
+guid: 3df1a292ed7cd99408a564858b95c809
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Summer Days
+  - Touch Of Nature
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 1
