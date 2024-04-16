@@ -231,8 +231,8 @@ public class NPM : NetworkComponent
         if(IsLocalPlayer)
         {
             humanImg.gameObject.SetActive(true);
+            lobsterImg.gameObject.SetActive(false);
         }
-
     }
 
     public void UI_LobsterTeam(bool team)
@@ -243,8 +243,8 @@ public class NPM : NetworkComponent
         if(IsLocalPlayer)
         {
             lobsterImg.gameObject.SetActive(true);
+            humanImg.gameObject.SetActive(false);
         }
-
     }
 
     public override void NetworkedStart()
@@ -281,8 +281,7 @@ public class NPM : NetworkComponent
     // Start is called before the first frame update
     void Start()
     {
-        humanImg = transform.Find("Human").GetComponent<Image>();
-        lobsterImg = transform.Find("Lobster").GetComponent<Image>();
+
     }
 
     // Update is called once per frame

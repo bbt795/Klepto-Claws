@@ -13,6 +13,9 @@ public class GameMaster : NetworkComponent
 
     private float elapsedTime = 0f;
     private float timeout = 30f; //300f is 5 minutes
+    public float TimeRemaining = 30f;
+    public int minutes;
+    public int seconds;
 
     public int StartingMoney = 10000;
     public int MoneyStolen;
@@ -51,6 +54,7 @@ public class GameMaster : NetworkComponent
             {
                 //np.transform.GetChild(0).gameObject.SetActive(true);
                 //np.UI_Money(MoneyStolen);
+                np.transform.GetChild(0).GetChild(2).gameObject.SetActive(false);
                 np.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
                 np.transform.GetChild(0).GetChild(1).GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Money Stolen: " + MoneyStolen;
             }
@@ -79,13 +83,45 @@ public class GameMaster : NetworkComponent
             
             if(IsServer)
             {
-                
+                Debug.Log("Money on GM: " + MoneyStolen);
             }
             if(IsClient)
             {
                 MoneyStolen = int.Parse(value);
             }
             MoneyStolen = int.Parse(value);
+        }
+
+        if(flag == "TIME")
+        {
+            TimeRemaining = float.Parse(value);
+
+            if (IsServer)
+            {
+                SendUpdate("TIME", TimeRemaining.ToString());
+            }
+            if(IsClient)
+            {
+                TimeRemaining = float.Parse(value);
+
+                foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
+                {
+                    np.transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
+
+                    np.transform.GetChild(0).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().text = TimeRemaining.ToString();
+
+                    if(TimeRemaining <= 10)
+                    {
+                        np.transform.GetChild(0).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().color = new Color(1.0f, 0.5f, 0.0f);
+
+                        if (TimeRemaining <= 5)
+                        {
+                            np.transform.GetChild(0).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().color = Color.red;
+                        }
+                    }
+
+                }
+            }
         }
     }
     public override void NetworkedStart()
@@ -99,15 +135,45 @@ public class GameMaster : NetworkComponent
         {
             yield return new WaitForSeconds(1f);
             elapsedTime += 1f;
-            Debug.Log(elapsedTime);
-            if(elapsedTime >= timeout || (StartingMoney * 0.75) < MoneyStolen)
+            //Debug.Log(elapsedTime);
+
+            /*if (TimeRemaining > 0)
+            {
+                TimeRemaining -= 1f;
+            }
+            else if (TimeRemaining < 0)
+            {
+                TimeRemaining = 0;
+            }
+            minutes = Mathf.FloorToInt(TimeRemaining / 60);
+            seconds = Mathf.FloorToInt(TimeRemaining % 60);
+
+            Debug.Log(minutes + ":" + seconds);*/
+
+            if (TimeRemaining > 0)
+            {
+                TimeRemaining -= 1f;
+            }
+            else if (TimeRemaining < 0)
+            {
+                TimeRemaining = 0;
+            }
+            SendUpdate("TIME", TimeRemaining.ToString());
+
+            if (elapsedTime >= timeout || (StartingMoney * 0.75) < MoneyStolen)
             {
                 //SendCommand("GAMEEND", "true");
                 GameEnd();
                 yield break;
             }
         }
-        
+
+        /*foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
+        {
+            np.transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
+
+            np.transform.GetChild(0).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().text = minutes + ":" + seconds;
+        }*/
     }
 
     public void GameEnd()
@@ -228,7 +294,6 @@ public class GameMaster : NetworkComponent
         }
         while (IsServer && GameRunning)
         {
-            
 
             //counts every NPM and adds it to the MoneyStolen
             MoneyStolen = 0;
@@ -264,6 +329,7 @@ public class GameMaster : NetworkComponent
                 SendUpdate("GAMESTART", GameStarted.ToString());
                 //SendUpdate("GAMEEND", GameEnding.ToString());
                 SendUpdate("MONEY", MoneyStolen.ToString());
+                SendUpdate("TIME", TimeRemaining.ToString());
                 IsDirty = false;
             }
             yield return new WaitForSeconds(1);

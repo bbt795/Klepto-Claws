@@ -3143,6 +3143,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2342157601715351138, guid: 3f1cd4bdde04c8547b4cb0ccc35962c0, type: 3}
+      propertyPath: Timer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342157601715351138, guid: 3f1cd4bdde04c8547b4cb0ccc35962c0, type: 3}
       propertyPath: SpawnPoints.Array.size
       value: 0
       objectReference: {fileID: 0}

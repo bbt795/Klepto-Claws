@@ -15,6 +15,7 @@ TagManager:
   - Treasure6
   - ItemPoint
   - Tank
+  - Timer
   layers:
   - Default
   - TransparentFX
