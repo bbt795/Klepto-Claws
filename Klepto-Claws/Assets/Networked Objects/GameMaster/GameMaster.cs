@@ -79,10 +79,7 @@ public class GameMaster : NetworkComponent
             
             if(IsServer)
             {
-                if((StartingMoney * 0.05f) < int.Parse(value))
-                {
-                    GameEnd();
-                }
+                
             }
             if(IsClient)
             {
@@ -103,7 +100,7 @@ public class GameMaster : NetworkComponent
             yield return new WaitForSeconds(1f);
             elapsedTime += 1f;
             Debug.Log(elapsedTime);
-            if(elapsedTime >= timeout)
+            if(elapsedTime >= timeout || (StartingMoney * 0.75) < MoneyStolen)
             {
                 //SendCommand("GAMEEND", "true");
                 GameEnd();
