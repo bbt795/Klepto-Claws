@@ -9,6 +9,9 @@ public class Lobster : NetworkComponent, IPlayer
 {
     public float Speed { get; set; }
     public float Strength { get; set; }
+
+    public Text PlayerName;
+
     public int TreasureCollected;
     public Material[] MaterialArray;
     
@@ -32,7 +35,26 @@ public class Lobster : NetworkComponent, IPlayer
             //Debug.Log("Object destroyed on server");
             SendUpdate("MONEY", TreasureCollected.ToString());
         }
-        if(flag == "MONEY")
+
+        if (flag == "NAME")
+        {
+            foreach (NPM lp in GameObject.FindObjectsOfType<NPM>())
+            {
+                if (IsServer)
+                {
+                    lp.PName = value;
+                    PlayerName.text = lp.PName;
+                    SendUpdate("NAME", value);
+                }
+                if (IsClient)
+                {
+                    lp.PName = value;
+                    PlayerName.text = lp.PName;
+                }
+            }
+        }
+
+        if (flag == "MONEY")
         {
             TreasureCollected = int.Parse(value.ToString());
             if (IsServer)
@@ -54,6 +76,27 @@ public class Lobster : NetworkComponent, IPlayer
 
     public override IEnumerator SlowUpdate()
     {
+        while (IsConnected)
+        {
+            if (IsServer)
+            {
+                if (IsDirty)
+                {
+
+                }
+            }
+
+            foreach (NPM lp in GameObject.FindObjectsOfType<NPM>())
+            {
+                if (lp.Owner == this.Owner)
+                {
+
+                    PlayerName.text = lp.PName;
+                }
+            }
+
+            yield return new WaitForSeconds(.1f);
+        }
 
         yield return new WaitForSeconds(0.1f);
 

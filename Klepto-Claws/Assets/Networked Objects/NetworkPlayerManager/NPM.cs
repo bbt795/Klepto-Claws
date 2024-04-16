@@ -7,6 +7,8 @@ using NETWORK_ENGINE;
 
 public class NPM : NetworkComponent
 {
+    public string PName;
+
     public bool IsReady;
     public int MoneyCollected;
 
@@ -30,7 +32,17 @@ public class NPM : NetworkComponent
                 SendUpdate("READY", value);
             }
         }
-        if(flag == "MONEY")
+
+        if (flag == "NAME")
+        {
+            PName = value;
+            if (IsServer)
+            {
+                SendUpdate("NAME", value);
+            }
+        }
+
+        if (flag == "MONEY")
         {
             MoneyCollected = int.Parse(value);
 
@@ -186,6 +198,15 @@ public class NPM : NetworkComponent
         //throw new System.NotImplementedException();
     }
 
+    public void UI_NameInput(string s)
+    {
+        if (IsLocalPlayer)
+        {
+            SendCommand("NAME", s);
+        }
+
+    }
+
     public void UI_Ready(bool r)
     {
         if(IsLocalPlayer)
@@ -232,6 +253,7 @@ public class NPM : NetworkComponent
             {
                 if(IsDirty)
                 {
+                    SendUpdate("NAME", PName);
                     SendUpdate("MONEY", MoneyCollected.ToString());
                     SendUpdate("HTEAM", humanCount.ToString());
                     SendUpdate("LTEAM", lobsterCount.ToString());

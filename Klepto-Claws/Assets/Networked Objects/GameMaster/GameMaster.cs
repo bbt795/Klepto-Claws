@@ -41,6 +41,7 @@ public class GameMaster : NetworkComponent
             }
             StartCoroutine(UpdateTimer());
         }
+
         if (flag == "GAMEEND")
         {
             GameRunning = false;
@@ -56,7 +57,24 @@ public class GameMaster : NetworkComponent
             
             //Debug.Log("Money on GameMaster: " + MoneyStolen);
         }
-        if(flag == "MONEY")
+
+        if (flag == "NAME")
+        {
+            foreach (NPM lp in GameObject.FindObjectsOfType<NPM>())
+            {
+                if (IsServer)
+                {
+                    lp.PName = value;
+                    SendUpdate("NAME", value);
+                }
+                if (IsClient)
+                {
+                    lp.PName = value;
+                }
+            }
+        }
+
+        if (flag == "MONEY")
         {
             
             if(IsServer)

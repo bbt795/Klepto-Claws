@@ -994,6 +994,7 @@ MonoBehaviour:
   MyCore: {fileID: 0}
   MyId: {fileID: 0}
   IsDirty: 0
+  PlayerName: {fileID: 7317321673197404984}
   TreasureCollected: 0
   MaterialArray: []
   canCollect: 0
