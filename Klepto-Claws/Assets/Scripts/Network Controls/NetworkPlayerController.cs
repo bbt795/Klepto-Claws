@@ -27,6 +27,8 @@ public class NetworkPlayerController : NetworkComponent
     public bool Captured;
     private static int lobsterCount = 0;
 
+    public AudioClip tauntSound;
+
     public override void HandleMessage(string flag, string value)
     {
 
@@ -59,6 +61,7 @@ public class NetworkPlayerController : NetworkComponent
             {
                 SendUpdate("TAUNT", value);
             }
+            AudioSource.PlayClipAtPoint(tauntSound, transform.position);
             MyAnime.SetTrigger("Taunt");
         }
 

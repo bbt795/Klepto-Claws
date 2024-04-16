@@ -767,6 +767,7 @@ MonoBehaviour:
   CanFire: 1
   GameOver: 0
   Captured: 0
+  tauntSound: {fileID: 8300000, guid: fca65e9e64b1b5b4888e60a34db655a6, type: 3}
 --- !u!54 &545441466435100671
 Rigidbody:
   m_ObjectHideFlags: 0
