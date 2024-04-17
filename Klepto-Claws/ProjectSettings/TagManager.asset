@@ -16,6 +16,7 @@ TagManager:
   - ItemPoint
   - Tank
   - Timer
+  - GameMusic
   layers:
   - Default
   - TransparentFX
