@@ -67,6 +67,7 @@ public class GameMaster : NetworkComponent
                 {
                     np.transform.GetChild(0).GetChild(1).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().text = "Human!";
                 }
+                StartCoroutine(DisconnectServer());
             }
             
             //Debug.Log("Money on GameMaster: " + MoneyStolen);
@@ -144,6 +145,18 @@ public class GameMaster : NetworkComponent
     public override void NetworkedStart()
     {
         MoneyStolen = 0;
+    }
+
+    public IEnumerator DisconnectServer()
+    {
+        yield return new WaitForSeconds(15f);
+        if(IsServer)
+        {
+            if(MyCore.IsConnected)
+            {
+                StartCoroutine(MyCore.DisconnectServer());
+            }
+        }
     }
 
     public IEnumerator UpdateTimer()

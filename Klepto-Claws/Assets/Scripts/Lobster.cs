@@ -126,7 +126,7 @@ public class Lobster : NetworkComponent, IPlayer
         Debug.Log("Timeout Corner");
         while(IsServer)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(10f);
             isCaptured = false;
             this.transform.position = freePosition;
             TreasureCollected = 0;
