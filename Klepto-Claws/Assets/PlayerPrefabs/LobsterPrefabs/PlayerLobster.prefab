@@ -1015,9 +1015,13 @@ MonoBehaviour:
   TreasureCollected: 0
   MaterialArray: []
   canCollect: 0
+  isCaptured: 0
+  capturedPosition: {x: -36, y: 1.5, z: 11.5}
+  freePosition: {x: -35.6, y: 0.5, z: 9.5}
   currentcolliding: {fileID: 0}
   gameMaster: {fileID: 0}
   Value: {fileID: 4423228592050143967}
+  pickupSound: {fileID: 8300000, guid: e3eb13c52d12dc04f949a355120f56ea, type: 3}
 --- !u!135 &-3499898506890802643
 SphereCollider:
   m_ObjectHideFlags: 0
