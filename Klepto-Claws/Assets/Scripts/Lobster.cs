@@ -25,6 +25,8 @@ public class Lobster : NetworkComponent, IPlayer
 
     public Text Value;
 
+    public AudioClip pickupSound;
+
     public override void HandleMessage(string flag, string value)
     {
         //throw new System.NotImplementedException();
@@ -220,6 +222,10 @@ public class Lobster : NetworkComponent, IPlayer
     {
         if (context.started)
         {
+            if (IsLocalPlayer)
+            {
+                AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+            }
             Debug.Log("E was pushed");
             SendCommand("PICKUP", "");
         }
