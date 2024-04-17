@@ -70,18 +70,33 @@ public class Lobster : NetworkComponent, IPlayer
                 Value.text = TreasureCollected.ToString();
             }
         }
-        if(flag == "CAPTURED")
+        if(flag == "CAUGHT")
         {
+            isCaptured = bool.Parse(value);
             if(IsServer)
             {
-                isCaptured = false;
-                this.transform.position = capturedPosition;
-                SendUpdate("CAPTURED", "false");
-                StartCoroutine(TankTime());
+                SendUpdate("CAUGHT", value.ToString());
             }
             if(IsClient)
             {
+                isCaptured = bool.Parse(value);
+            }
+        }
+        if(flag == "CAPTURED")
+        {
+            isCaptured = bool.Parse(value);
+            if(IsServer)
+            {
+                Debug.Log("kill yourself");
                 isCaptured = false;
+                this.transform.position = capturedPosition;
+                StartCoroutine(TankTime());
+                SendUpdate("CAPTURED", value);
+            }
+            if(IsClient)
+            {
+                Debug.Log("Sad");
+                isCaptured = bool.Parse(value);
                 this.transform.position = capturedPosition;
             }
             
@@ -106,6 +121,7 @@ public class Lobster : NetworkComponent, IPlayer
 
     public IEnumerator TankTime()
     {
+        Debug.Log("Timeout Corner");
         while(isCaptured && IsServer)
         {
             yield return new WaitForSeconds(5f);
@@ -117,9 +133,16 @@ public class Lobster : NetworkComponent, IPlayer
         }
     }
 
+    public void CapturedTrue()
+    {
+        Debug.Log("Please");
+        SendCommand("CAUGHT", "true");
+    }
+
     public void LobsterCaptured()
     {
-        SendCommand("CAPTURED", "true");
+        Debug.Log("Spaghetti");
+        SendCommand("CAPTURED", "true"); 
     }
 
     public override void NetworkedStart()
@@ -135,13 +158,13 @@ public class Lobster : NetworkComponent, IPlayer
             {
                 if (IsDirty)
                 {
-
+                    SendUpdate("CAUGHT", isCaptured.ToString());
                 }
             }
             if(isCaptured)
             {
-                //LobsterCaptured();
-                SendUpdate("CAPTURED", "true");
+                LobsterCaptured();
+                //SendUpdate("CAPTURED", "true");
             }
 
             foreach (NPM lp in GameObject.FindObjectsOfType<NPM>())

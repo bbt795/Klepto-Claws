@@ -22,6 +22,7 @@ public class Human : NetworkComponent, IPlayer
             //Trigger capture animation, figure out how to have human hold lobster/find alt solution, start struggle mechanic
             Lobster player = currentColliding.GetComponent<Lobster>();
             player.isCaptured = true;
+            player.CapturedTrue();
             //isCapturing = true;
 
             //Insert however we want to deal with lobster here
