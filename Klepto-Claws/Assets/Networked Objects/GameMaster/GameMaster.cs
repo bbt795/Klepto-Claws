@@ -12,8 +12,8 @@ public class GameMaster : NetworkComponent
     public bool GameEnding = false;
 
     private float elapsedTime = 0f;
-    private float timeout = 30f; //300f is 5 minutes
-    public float TimeRemaining = 30f;
+    private float timeout = 300f; //300f is 5 minutes
+    public float TimeRemaining = 300f;
     public int minutes;
     public int seconds;
 

@@ -16,7 +16,7 @@ public class Lobster : NetworkComponent, IPlayer
     public Material[] MaterialArray;
     
     public bool canCollect;
-    public bool isCaptured;
+    public bool isCaptured = false;
     public Vector3 capturedPosition = new Vector3(-36f, 1.5f, 11.5f);
     public Vector3 freePosition = new Vector3(-35.6f, 0.5f, 9.5f);
     public GameObject currentcolliding;
@@ -81,13 +81,14 @@ public class Lobster : NetworkComponent, IPlayer
 
     public IEnumerator TankTime()
     {
-        while(IsServer)
-        {
+        // while(IsServer)
+        // {
             yield return new WaitForSeconds(5f);
+            isCaptured = false;
             this.transform.position = freePosition;
             TreasureCollected = 0;
             SendUpdate("MONEY", "0"); 
-        }
+        //}
     }
 
     public override void NetworkedStart()
@@ -108,7 +109,7 @@ public class Lobster : NetworkComponent, IPlayer
             }
             if(isCaptured)
             {
-                SendCommand("CAPTURED", "true");
+                SendUpdate("CAPTURED", "true");
             }
 
             foreach (NPM lp in GameObject.FindObjectsOfType<NPM>())
