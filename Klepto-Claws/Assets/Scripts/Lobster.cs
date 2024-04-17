@@ -72,24 +72,54 @@ public class Lobster : NetworkComponent, IPlayer
         }
         if(flag == "CAPTURED")
         {
-            isCaptured = false;
-            this.transform.position = capturedPosition;
-            StartCoroutine(TankTime());
-            this.transform.position = freePosition;
+            if(IsServer)
+            {
+                isCaptured = false;
+                this.transform.position = capturedPosition;
+                SendUpdate("CAPTURED", "false");
+                StartCoroutine(TankTime());
+            }
+            if(IsClient)
+            {
+                isCaptured = false;
+                this.transform.position = capturedPosition;
+            }
+            
+            //this.transform.position = freePosition;
             //SendUpdate("MONEY", "0");
+        }
+        if(flag == "FREE")
+        {
+            if(IsServer)
+            {
+                isCaptured = false;
+                this.transform.position = freePosition;
+                SendUpdate("FREE", "true");
+            }
+            if(IsClient)
+            {
+                isCaptured = false;
+                this.transform.position=freePosition;
+            }
         }
     }
 
     public IEnumerator TankTime()
     {
-        // while(IsServer)
-        // {
+        while(isCaptured && IsServer)
+        {
             yield return new WaitForSeconds(5f);
             isCaptured = false;
             this.transform.position = freePosition;
             TreasureCollected = 0;
-            SendUpdate("MONEY", TreasureCollected.ToString()); 
-        //}
+            SendUpdate("MONEY", TreasureCollected.ToString());
+            SendUpdate("FREE", "true"); 
+        }
+    }
+
+    public void LobsterCaptured()
+    {
+        SendCommand("CAPTURED", "true");
     }
 
     public override void NetworkedStart()
@@ -110,6 +140,7 @@ public class Lobster : NetworkComponent, IPlayer
             }
             if(isCaptured)
             {
+                //LobsterCaptured();
                 SendUpdate("CAPTURED", "true");
             }
 
