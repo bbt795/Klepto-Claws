@@ -122,14 +122,15 @@ public class Lobster : NetworkComponent, IPlayer
     public IEnumerator TankTime()
     {
         Debug.Log("Timeout Corner");
-        while(isCaptured && IsServer)
+        while(IsServer)
         {
             yield return new WaitForSeconds(5f);
             isCaptured = false;
             this.transform.position = freePosition;
             TreasureCollected = 0;
             SendUpdate("MONEY", TreasureCollected.ToString());
-            SendUpdate("FREE", "true"); 
+            SendUpdate("FREE", "true");
+            yield break; 
         }
     }
 
