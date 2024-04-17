@@ -580,6 +580,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 100018, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 6d0f1e3556bb60547bbedb8fb582b067, type: 3}
       propertyPath: m_TagString
       value: Lobster
       objectReference: {fileID: 0}
