@@ -68,10 +68,11 @@ public class GameMaster : NetworkComponent
                 {
                     np.transform.GetChild(0).GetChild(1).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().text = "Human!";
                 }
-                if(IsServer)
-                {
-                    StartCoroutine(DisconnectGameServer());
-                }
+                
+            }
+            if(IsServer)
+            {
+                StartCoroutine(DisconnectGameServer());
             }
             
             //Debug.Log("Money on GameMaster: " + MoneyStolen);
@@ -235,6 +236,10 @@ public class GameMaster : NetworkComponent
         }
         SendUpdate("MONEY", MoneyStolen.ToString());
         Debug.Log("Money on GameMaster: " + MoneyStolen);
+        if(IsServer)
+        {
+            StartCoroutine(DisconnectGameServer());
+        }
 
         //MyCore.DisconnectServer();
 
