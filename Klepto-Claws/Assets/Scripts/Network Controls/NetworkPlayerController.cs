@@ -61,7 +61,10 @@ public class NetworkPlayerController : NetworkComponent
             {
                 SendUpdate("TAUNT", value);
             }
-            AudioSource.PlayClipAtPoint(tauntSound, transform.position);
+            if(IsLocalPlayer)
+            {
+                AudioSource.PlayClipAtPoint(tauntSound, transform.position);
+            }
             MyAnime.SetTrigger("Taunt");
         }
 
