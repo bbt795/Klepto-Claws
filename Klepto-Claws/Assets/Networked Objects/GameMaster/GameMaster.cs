@@ -12,8 +12,8 @@ public class GameMaster : NetworkComponent
     public bool GameEnding = false;
 
     private float elapsedTime = 0f;
-    private float timeout = 300f; //300f is 5 minutes
-    public float TimeRemaining = 300f;
+    private float timeout = 10f; //300f is 5 minutes
+    public float TimeRemaining = 10f;
     public int minutes;
     public int seconds;
 
@@ -50,6 +50,7 @@ public class GameMaster : NetworkComponent
         if (flag == "GAMEEND")
         {
             GameRunning = false;
+            GameStarted = false;
             GameEnding = true;
             Debug.Log("Game Ending Here");
             foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
@@ -67,7 +68,10 @@ public class GameMaster : NetworkComponent
                 {
                     np.transform.GetChild(0).GetChild(1).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().text = "Human!";
                 }
-                StartCoroutine(DisconnectServer());
+                if(IsServer)
+                {
+                    StartCoroutine(DisconnectGameServer());
+                }
             }
             
             //Debug.Log("Money on GameMaster: " + MoneyStolen);
@@ -147,13 +151,16 @@ public class GameMaster : NetworkComponent
         MoneyStolen = 0;
     }
 
-    public IEnumerator DisconnectServer()
+    public IEnumerator DisconnectGameServer()
     {
         yield return new WaitForSeconds(10f);
+        Debug.LogError("In the Coroutine");
         if(IsServer)
         {
+            Debug.LogError("IsServer");
             if(MyCore.IsConnected)
             {
+                Debug.LogError("IsConnected");
                 StartCoroutine(MyCore.DisconnectServer());
             }
         }
@@ -210,6 +217,7 @@ public class GameMaster : NetworkComponent
     {
         //yield return new WaitForSeconds(30);
         GameRunning = false;
+        GameStarted = false;
         GameEnding = true;
         SendUpdate("GAMEEND", "true");
         MoneyStolen = 0;
@@ -373,6 +381,7 @@ public class GameMaster : NetworkComponent
     void Start()
     {
         GameStarted = false;
+        GameEnding = false;
 
         GameObject[] temp = GameObject.FindGameObjectsWithTag("SpawnPoint");
         SpawnPoints = new List<Vector3>();

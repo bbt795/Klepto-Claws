@@ -68,3 +68,17 @@ MonoBehaviour:
   MyCore: {fileID: 0}
   MyId: {fileID: 0}
   IsDirty: 0
+  GameStarted: 0
+  GameRunning: 0
+  GameEnding: 0
+  TimeRemaining: 10
+  minutes: 0
+  seconds: 0
+  StartingMoney: 10000
+  MoneyStolen: 0
+  humanCount: 0
+  lobsterCount: 0
+  SpawnPoints: []
+  CurrentSpawn: {x: 0, y: 0, z: 0}
+  ItemPoints: []
+  CurrentItemSpawn: {x: 0, y: 0, z: 0}
