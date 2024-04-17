@@ -59,6 +59,14 @@ public class GameMaster : NetworkComponent
                 np.transform.GetChild(0).GetChild(2).gameObject.SetActive(false);
                 np.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
                 np.transform.GetChild(0).GetChild(1).GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Money Stolen: " + MoneyStolen;
+                if ((StartingMoney * 0.75) < MoneyStolen)
+                {
+                    np.transform.GetChild(0).GetChild(1).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().text = "Lobsters!";
+                }
+                else
+                {
+                    np.transform.GetChild(0).GetChild(1).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().text = "Human!";
+                }
             }
             
             //Debug.Log("Money on GameMaster: " + MoneyStolen);
@@ -169,7 +177,7 @@ public class GameMaster : NetworkComponent
             }
             SendUpdate("TIME", TimeRemaining.ToString());
 
-            if (elapsedTime >= timeout || (StartingMoney * 0.75) < MoneyStolen)
+            if (elapsedTime >= timeout)
             {
                 //SendCommand("GAMEEND", "true");
                 GameEnd();
@@ -199,6 +207,7 @@ public class GameMaster : NetworkComponent
             //np.transform.GetChild(0).gameObject.SetActive(true);
             //np.UI_Money(MoneyStolen);
             np.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+
             //np.transform.GetChild(0).GetChild(1).GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Money Stolen: " + finalStolen;
             np.UI_Money(finalStolen);
           
