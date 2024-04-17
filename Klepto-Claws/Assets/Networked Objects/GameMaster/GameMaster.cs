@@ -40,6 +40,8 @@ public class GameMaster : NetworkComponent
             foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
             {
                 np.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                np.transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
+
                 //np.transform.GetChild(0).gameObject.SetActive(false);
             }
             StartCoroutine(UpdateTimer());
@@ -90,15 +92,12 @@ public class GameMaster : NetworkComponent
             {
                 MoneyStolen = int.Parse(value);
 
-                //started adding stuff here for overall treasure !!
-                /*foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
+                foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
                 {
-                    if(np.IsLobster)
-                    {
-                        np.transform.GetChild(0).GetChild(2).GetChild(3).GetComponentInChildren<TextMeshProUGUI>().text = MoneyStolen.ToString();
-                    }
 
-                }*/
+                    np.transform.GetChild(0).GetChild(2).GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = MoneyStolen.ToString();
+
+                }
             }
         }
 
@@ -237,6 +236,7 @@ public class GameMaster : NetworkComponent
             GameRunning = readyGo;
             yield return new WaitForSeconds(2);
         }
+
         if (IsServer && GameRunning)
         {
             //while(all players have not hit ready)
@@ -342,9 +342,9 @@ public class GameMaster : NetworkComponent
                 SendUpdate("TIME", TimeRemaining.ToString());
                 IsDirty = false;
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.1f);
         }
-        yield return new WaitForSeconds(.1f);
+        //yield return new WaitForSeconds(.1f);
     }
 
     // Start is called before the first frame update

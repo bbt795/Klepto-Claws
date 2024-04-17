@@ -139,10 +139,11 @@ public class NPM : NetworkComponent
 
         if (flag == "LTEAM")
         {
-            IsLobster = bool.Parse(value);
+            
             if (IsServer)
             {
-                SendUpdate("LTEAM", value);
+                IsLobster = bool.Parse(value);
+                //SendUpdate("LTEAM", value);
 
                 bool toggleValue = bool.Parse(value);
                 if (toggleValue)
