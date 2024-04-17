@@ -75,6 +75,7 @@ public class Lobster : NetworkComponent, IPlayer
             isCaptured = false;
             this.transform.position = capturedPosition;
             StartCoroutine(TankTime());
+            this.transform.position = freePosition;
             //SendUpdate("MONEY", "0");
         }
     }
@@ -87,7 +88,7 @@ public class Lobster : NetworkComponent, IPlayer
             isCaptured = false;
             this.transform.position = freePosition;
             TreasureCollected = 0;
-            SendUpdate("MONEY", "0"); 
+            SendUpdate("MONEY", TreasureCollected.ToString()); 
         //}
     }
 
