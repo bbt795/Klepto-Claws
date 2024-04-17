@@ -149,7 +149,7 @@ public class GameMaster : NetworkComponent
 
     public IEnumerator DisconnectServer()
     {
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(10f);
         if(IsServer)
         {
             if(MyCore.IsConnected)
