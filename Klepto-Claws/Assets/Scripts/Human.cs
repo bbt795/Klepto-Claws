@@ -21,7 +21,8 @@ public class Human : NetworkComponent, IPlayer
         {
             //Trigger capture animation, figure out how to have human hold lobster/find alt solution, start struggle mechanic
             Lobster player = currentColliding.GetComponent<Lobster>();
-            isCapturing = true;
+            player.isCaptured = true;
+            //isCapturing = true;
 
             //Insert however we want to deal with lobster here
 
@@ -31,10 +32,10 @@ public class Human : NetworkComponent, IPlayer
         {
             //Need to put lobster in tank, remove treasure, and have it replaced on map
             //Potentially add a check so human can't interact unless already holding a lobster
-            Lobster player = currentColliding.GetComponent<Lobster>();
-            capturedTreasure = player.TreasureCollected;
-            player.TreasureCollected = 0;
-            isCapturing = false;
+            // Lobster player = currentColliding.GetComponent<Lobster>();
+            // capturedTreasure = player.TreasureCollected;
+            // player.TreasureCollected = 0;
+            // isCapturing = false;
 
         }
     }
