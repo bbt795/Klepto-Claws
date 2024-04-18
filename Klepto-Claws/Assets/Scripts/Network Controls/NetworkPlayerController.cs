@@ -61,7 +61,7 @@ public class NetworkPlayerController : NetworkComponent
             {
                 SendUpdate("TAUNT", value);
             }
-            if(IsLocalPlayer)
+            if(IsClient)
             {
                 AudioSource.PlayClipAtPoint(tauntSound, transform.position);
             }
