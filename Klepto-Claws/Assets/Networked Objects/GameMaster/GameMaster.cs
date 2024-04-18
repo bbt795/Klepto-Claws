@@ -37,6 +37,7 @@ public class GameMaster : NetworkComponent
             //   Want to disable PlayerInfo
             GameStarted = true;
             GameRunning = true;
+            MyCore.NotifyGameStart();
             foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
             {
                 np.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
