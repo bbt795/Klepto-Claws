@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7431367181971714977}
+  - component: {fileID: 6539904692375352210}
   m_Layer: 0
   m_Name: Dryer Prefab
   m_TagString: Untagged
@@ -33,6 +34,27 @@ Transform:
   - {fileID: 8420059447456338582}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6539904692375352210
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8659942001604662472}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.85388756, y: 1.3647424, z: 0.7872462}
+  m_Center: {x: 2.437983, y: -1.8793273, z: 1.8296154}
 --- !u!1001 &3310768700097280466
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6814322806750237103}
+  - component: {fileID: 7766467656274304625}
   m_Layer: 0
   m_Name: Washing Machine Prefab
   m_TagString: Untagged
@@ -33,6 +34,27 @@ Transform:
   - {fileID: 2355322208972682722}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7766467656274304625
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2196092458482655687}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8833038, y: 1.4036789, z: 0.7802224}
+  m_Center: {x: -0.05834809, y: 0.22544885, z: -0.21793824}
 --- !u!1001 &2820784353256854025
 PrefabInstance:
   m_ObjectHideFlags: 0
