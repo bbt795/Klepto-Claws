@@ -18,7 +18,7 @@ public class Lobster : NetworkComponent, IPlayer
     public bool canCollect;
     public bool isCaptured = false;
     public Vector3 capturedPosition = new Vector3(-36f, 1.5f, 11.5f);
-    public Vector3 freePosition = new Vector3(-35.6f, 0.5f, 9.5f);
+    //public Vector3 freePosition = new Vector3(-35.6f, 0.5f, 9.5f);
     public GameObject currentcolliding;
 
     public GameMaster gameMaster;
@@ -26,6 +26,9 @@ public class Lobster : NetworkComponent, IPlayer
     public Text Value;
 
     public AudioClip pickupSound;
+
+    public List<Vector3> SpawnPoints;
+    public Vector3 CurrentSpawn;
 
     public override void HandleMessage(string flag, string value)
     {
@@ -107,16 +110,20 @@ public class Lobster : NetworkComponent, IPlayer
         }
         if(flag == "FREE")
         {
-            if(IsServer)
+            if (IsServer)
             {
                 isCaptured = false;
-                this.transform.position = freePosition;
-                SendUpdate("FREE", "true");
+                //this.transform.position = freePosition;
+                Vector3 CurrentSpawn = SpawnPoints[int.Parse(value)];
+                this.transform.position = CurrentSpawn;
+
+                SendUpdate("FREE", value);
             }
             if(IsClient)
             {
                 isCaptured = false;
-                this.transform.position=freePosition;
+                Vector3 CurrentSpawn = SpawnPoints[int.Parse(value)];
+                this.transform.position = CurrentSpawn;
             }
         }
     }
@@ -128,10 +135,12 @@ public class Lobster : NetworkComponent, IPlayer
         {
             yield return new WaitForSeconds(10f);
             isCaptured = false;
-            this.transform.position = freePosition;
+            int spawnIndex = Random.Range(0, SpawnPoints.Count);
+            Vector3 CurrentSpawn = SpawnPoints[spawnIndex];
+            this.transform.position = CurrentSpawn;
             TreasureCollected = 0;
             SendUpdate("MONEY", TreasureCollected.ToString());
-            SendUpdate("FREE", "true");
+            SendUpdate("FREE", spawnIndex.ToString());
             yield break; 
         }
     }
@@ -191,6 +200,13 @@ public class Lobster : NetworkComponent, IPlayer
     {
 
         gameMaster = FindObjectOfType<GameMaster>();
+
+        GameObject[] temp = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        SpawnPoints = new List<Vector3>();
+        foreach (GameObject g in temp)
+        {
+            SpawnPoints.Add(g.transform.position);
+        }
 
     }
 
