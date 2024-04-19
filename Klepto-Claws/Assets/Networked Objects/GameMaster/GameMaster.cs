@@ -12,8 +12,8 @@ public class GameMaster : NetworkComponent
     public bool GameEnding = false;
 
     private float elapsedTime = 0f;
-    private float timeout = 300f; //300f is 5 minutes
-    public float TimeRemaining = 300f;
+    private float timeout = 180f; //300f is 5 minutes
+    public float TimeRemaining = 180f;
     public int minutes;
     public int seconds;
 
@@ -61,7 +61,7 @@ public class GameMaster : NetworkComponent
                 np.transform.GetChild(0).GetChild(2).gameObject.SetActive(false);
                 np.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
                 np.transform.GetChild(0).GetChild(1).GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Money Stolen: " + MoneyStolen;
-                if ((StartingMoney * 0.75) < MoneyStolen)
+                if ((StartingMoney * 0.6) < MoneyStolen)
                 {
                     np.transform.GetChild(0).GetChild(1).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().text = "Lobsters!";
                 }

@@ -187,8 +187,12 @@ public class NetworkPlayerController : NetworkComponent
 
         if (IsServer)
         {
-
-            MyRig.velocity = this.transform.forward * LastMove.y * 3 + new Vector3(0, MyRig.velocity.y, 0);
+            float setVelocitySpeed = 3f;
+            if(this.gameObject.tag == "Human")
+            {
+                setVelocitySpeed = 3.5f;
+            }
+            MyRig.velocity = this.transform.forward * LastMove.y * setVelocitySpeed + new Vector3(0, MyRig.velocity.y, 0);
             MyRig.angularVelocity = new Vector3(0, LastMove.x, 0) * Mathf.PI / 1.5f;
             var speed = Mathf.Max(Mathf.Abs(MyRig.velocity.x), Mathf.Max(MyRig.angularVelocity.y));
             MyAnime.SetFloat("Move", speed);
