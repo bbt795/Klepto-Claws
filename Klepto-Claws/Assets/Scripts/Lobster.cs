@@ -25,6 +25,7 @@ public class Lobster : NetworkComponent, IPlayer
 
     public Text Value;
 
+    public bool isInsideTrigger = false;
     public AudioClip pickupSound;
 
     public List<Vector3> SpawnPoints;
@@ -236,7 +237,7 @@ public class Lobster : NetworkComponent, IPlayer
     // }
     public void OnPickUp(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && isInsideTrigger)
         {
             if (IsLocalPlayer)
             {
@@ -244,6 +245,10 @@ public class Lobster : NetworkComponent, IPlayer
             }
             Debug.Log("E was pushed");
             SendCommand("PICKUP", "");
+        }
+        if(context.canceled)
+        {
+            isInsideTrigger = false;
         }
     }
 
@@ -285,6 +290,7 @@ public class Lobster : NetworkComponent, IPlayer
 
             if (c.gameObject.GetComponent<Treasure>() != null)
             {
+                isInsideTrigger = true;
 
                 c.gameObject.transform.GetChild(0).gameObject.SetActive(true);
                 currentcolliding = c.gameObject;
@@ -304,6 +310,7 @@ public class Lobster : NetworkComponent, IPlayer
 
             if (c.gameObject.GetComponent<Treasure>() != null)
             {
+                isInsideTrigger = false;
 
                 c.gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 currentcolliding = null;
