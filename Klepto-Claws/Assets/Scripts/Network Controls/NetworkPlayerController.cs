@@ -189,7 +189,7 @@ public class NetworkPlayerController : NetworkComponent
         {
 
             MyRig.velocity = this.transform.forward * LastMove.y * 3 + new Vector3(0, MyRig.velocity.y, 0);
-            MyRig.angularVelocity = new Vector3(0, LastMove.x, 0) * Mathf.PI / 3.0f;
+            MyRig.angularVelocity = new Vector3(0, LastMove.x, 0) * Mathf.PI / 1.5f;
             var speed = Mathf.Max(Mathf.Abs(MyRig.velocity.x), Mathf.Max(MyRig.angularVelocity.y));
             MyAnime.SetFloat("Move", speed);
         }
