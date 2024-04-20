@@ -76,23 +76,10 @@ public class NPM : NetworkComponent
 
                     humanCount++;
 
-                    if(humanCount == 1)
-                    {
-
-                        humanToggle.interactable = false;
-
-                    }
-
                 } else
                 {
 
                     humanCount--;
-                    if(humanCount < 1)
-                    {
-
-                        humanToggle.interactable = true;
-
-                    }
 
                 }
 
@@ -104,19 +91,6 @@ public class NPM : NetworkComponent
             {
 
                 humanCount = int.Parse(value);
-                if (humanCount == 1)
-                {
-                    if (!humanToggle.isOn)
-                    {
-                        humanToggle.interactable = false;
-                    }
-
-                } else
-                {
-
-                    humanToggle.interactable = true;
-
-                }
 
             }
 
@@ -135,25 +109,11 @@ public class NPM : NetworkComponent
 
                     lobsterCount++;
 
-                    if(lobsterCount == 3)
-                    {
-
-                        lobsterToggle.interactable = false;
-
-                    }
-
                 }
                 else
                 {
 
                     lobsterCount--;
-
-                    if(lobsterCount < 3)
-                    {
-
-                        lobsterToggle.interactable = true;
-
-                    }
 
                 }
 
@@ -164,19 +124,6 @@ public class NPM : NetworkComponent
             {
 
                 lobsterCount = int.Parse(value);
-
-                if(lobsterCount == 3)
-                {
-
-                    lobsterToggle.interactable = false;
-
-                } else
-                {
-
-                    lobsterToggle.interactable = true;
-
-                }
-
 
             }
 
