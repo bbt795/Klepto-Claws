@@ -37,7 +37,7 @@ public class GameMaster : NetworkComponent
     {
         if (flag == "GAMESTART")
         {
-            //   Want to disable PlayerInfo
+
             GameStarted = true;
             GameRunning = true;
             MyCore.NotifyGameStart();
@@ -46,7 +46,6 @@ public class GameMaster : NetworkComponent
                 np.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
                 np.transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
 
-                //np.transform.GetChild(0).gameObject.SetActive(false);
             }
             StartCoroutine(UpdateTimer());
         }
@@ -56,15 +55,15 @@ public class GameMaster : NetworkComponent
             GameRunning = false;
             GameStarted = false;
             GameEnding = true;
-            Debug.Log("Game Ending Here");
+
             GetPlayerWithHighestMoneyStolen();
             foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
             {
-                //np.transform.GetChild(0).gameObject.SetActive(true);
-                //np.UI_Money(MoneyStolen);
+
                 np.transform.GetChild(0).GetChild(2).gameObject.SetActive(false);
                 np.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
                 np.transform.GetChild(0).GetChild(1).GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Money Stolen: " + MoneyStolen;
+
                 if ((StartingMoney * 0.25) < MoneyStolen)
                 {
                     np.transform.GetChild(0).GetChild(1).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().text = "Lobsters!";
@@ -83,7 +82,6 @@ public class GameMaster : NetworkComponent
                 StartCoroutine(DisconnectGameServer());
             }
             
-            //Debug.Log("Money on GameMaster: " + MoneyStolen);
         }
 
         if (flag == "NAME")
@@ -108,7 +106,7 @@ public class GameMaster : NetworkComponent
 
             if (IsServer)
             {
-                Debug.Log("Money on GM: " + MoneyStolen);
+
             }
             if(IsClient)
             {
@@ -163,13 +161,12 @@ public class GameMaster : NetworkComponent
     public IEnumerator DisconnectGameServer()
     {
         yield return new WaitForSeconds(10f);
-        Debug.LogError("In the Coroutine");
+
         if(IsServer)
         {
-            Debug.LogError("IsServer");
+
             if(MyCore.IsConnected)
             {
-                Debug.LogError("IsConnected");
                 StartCoroutine(MyCore.DisconnectServer());
             }
         }
@@ -194,7 +191,6 @@ public class GameMaster : NetworkComponent
 
             if (elapsedTime >= timeout)
             {
-                //SendCommand("GAMEEND", "true");
                 GameEnd();
                 yield break;
             }
@@ -203,7 +199,6 @@ public class GameMaster : NetworkComponent
 
     public void GameEnd()
     {
-        //yield return new WaitForSeconds(30);
         GameRunning = false;
         GameStarted = false;
         GameEnding = true;
@@ -215,24 +210,18 @@ public class GameMaster : NetworkComponent
         
         foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
         {
-            //np.transform.GetChild(0).gameObject.SetActive(true);
-            //np.UI_Money(MoneyStolen);
+
             np.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
 
-            //np.transform.GetChild(0).GetChild(1).GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Money Stolen: " + finalStolen;
             np.UI_Money(finalStolen);
 
             np.transform.GetChild(0).GetChild(1).GetChild(3).GetComponentInChildren<TextMeshProUGUI>().text = playerName.ToString() + " with " + maxMoneyStolen;
-            Debug.Log("in game end" + playerName);
         }
         SendUpdate("MONEY", MoneyStolen.ToString());
-        Debug.Log("Money on GameMaster: " + MoneyStolen);
         if(IsServer)
         {
             StartCoroutine(DisconnectGameServer());
         }
-
-        //MyCore.DisconnectServer();
 
     }
     public override IEnumerator SlowUpdate()
@@ -265,20 +254,11 @@ public class GameMaster : NetworkComponent
 
         if (IsServer && GameRunning)
         {
-            //while(all players have not hit ready)
-            //Wait
 
             SendUpdate("GAMESTART", GameStarted.ToString());
             StartCoroutine(UpdateTimer());
             
             SendUpdate("MONEY", MoneyStolen.ToString());
-            Debug.Log("Game Master Money: " + MoneyStolen);
-            //SendUpdate("GAMEEND", GameEnding.ToString());
-
-            //Go to each NetworkPlayerManager and look at their options
-            //Create the appropriate character for their options
-            //GameObject temp = MyCore.NetCreateObject(1,Owner,new Vector3);
-            //temp.GetComponent<MyCharacterScript>().team = //set the team;
 
             MyId.NotifyDirty();
 
@@ -338,11 +318,6 @@ public class GameMaster : NetworkComponent
                 MoneyStolen += pl.TreasureCollected;
             }
             SendUpdate("MONEY", MoneyStolen.ToString());
-            // if((StartingMoney * 0.05f) < MoneyStolen)
-            // {
-            //     GameEnd();
-            // }
-            //Debug.Log("Money on GameMaster: " + MoneyStolen); //always ends up at 0 :(
 
             //check for empty spawn points and respawn items after a small delay
             foreach (Vector3 currentItemSpawn in ItemPoints)
@@ -363,14 +338,12 @@ public class GameMaster : NetworkComponent
             if (IsDirty)
             {
                 SendUpdate("GAMESTART", GameStarted.ToString());
-                //SendUpdate("GAMEEND", GameEnding.ToString());
                 SendUpdate("MONEY", MoneyStolen.ToString());
                 SendUpdate("TIME", TimeRemaining.ToString());
                 IsDirty = false;
             }
             yield return new WaitForSeconds(.1f);
         }
-        //yield return new WaitForSeconds(.1f);
     }
 
     // Start is called before the first frame update
@@ -422,33 +395,17 @@ public class GameMaster : NetworkComponent
 
     public void GetPlayerWithHighestMoneyStolen()
     {
-        /*string playerName = "";
-        int maxMoneyStolen = 0; // Initialize to zero, assuming MoneyCollected cannot be negative*/
 
         foreach (Lobster lp in GameObject.FindObjectsOfType<Lobster>())
         {
             this.maxMoneyStolen = Mathf.Max(maxMoneyStolen, lp.TreasureCollected);
-            Debug.Log(maxMoneyStolen);
 
             if (lp.TreasureCollected == maxMoneyStolen)
             {
                 playerName = lp.PlayerName.text;
-                Debug.Log(playerName);
                 
             }
         }
-
-        /*foreach (Lobster lp in GameObject.FindObjectsOfType<Lobster>())
-        {
-            if (lp.TreasureCollected == maxMoneyStolen)
-            {
-                playerName = lp.PlayerName;
-                Debug.Log(playerName);
-                break; // Exit the loop once the player with the highest MoneyCollected is found
-            }
-        }*/
-
-        //return playerName;
     }
 
 }

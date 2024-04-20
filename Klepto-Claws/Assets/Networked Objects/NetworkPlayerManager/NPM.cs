@@ -52,23 +52,12 @@ public class NPM : NetworkComponent
             if(IsServer)
             {
 
-                // foreach (Lobster pl in GameObject.FindObjectsOfType<Lobster>())
-                // {
-                //     MoneyCollected += pl.TreasureCollected;
-                // }
-
-                //tmpObject.text = "Money Collected: " + value;
                 tmpObject.text = "Money Stolen: " + MoneyCollected.ToString();
-                Debug.Log("Money on NPM: " + MoneyCollected);
                 SendUpdate("MONEY", MoneyCollected.ToString());
             }
             if(IsClient)
             {
                 tmpObject.text = "Money Stolen: " + MoneyCollected.ToString();
-                // foreach (Lobster pl in GameObject.FindObjectsOfType<Lobster>())
-                // {
-                //     MoneyCollected += pl.TreasureCollected;
-                // }
             }
         }
 
@@ -98,8 +87,6 @@ public class NPM : NetworkComponent
                 {
 
                     humanCount--;
-                    //small logic error here when one player has lobster chosen, but then another player unchecks human, it would turn it back on for the lobster player
-                    //will deal with later
                     if(humanCount < 1)
                     {
 
@@ -110,8 +97,6 @@ public class NPM : NetworkComponent
                 }
 
                 SendUpdate("HTEAM", humanCount.ToString());
-                //I give up for tonight
-                //it's counting correctly, but not sync'ing the interactable?
 
             }
 
@@ -143,7 +128,6 @@ public class NPM : NetworkComponent
             if (IsServer)
             {
                 IsLobster = bool.Parse(value);
-                //SendUpdate("LTEAM", value);
 
                 bool toggleValue = bool.Parse(value);
                 if (toggleValue)
@@ -164,7 +148,6 @@ public class NPM : NetworkComponent
 
                     lobsterCount--;
 
-                    //same potential logic issue as above
                     if(lobsterCount < 3)
                     {
 
@@ -198,8 +181,7 @@ public class NPM : NetworkComponent
             }
 
         }
-        
-        //throw new System.NotImplementedException();
+
     }
 
     public void UI_NameInput(string s)
@@ -254,7 +236,7 @@ public class NPM : NetworkComponent
         {
             this.transform.GetChild(0).gameObject.SetActive(false);
         }
-        //throw new System.NotImplementedException();
+
     }
 
     public override IEnumerator SlowUpdate()
@@ -269,8 +251,6 @@ public class NPM : NetworkComponent
                     SendUpdate("MONEY", MoneyCollected.ToString());
                     SendUpdate("HTEAM", humanCount.ToString());
                     SendUpdate("LTEAM", lobsterCount.ToString());
-
-
 
                     IsDirty = false;
                 }

@@ -18,7 +18,6 @@ public class Lobster : NetworkComponent, IPlayer
     public bool canCollect;
     public bool isCaptured = false;
     public Vector3 capturedPosition = new Vector3(-36f, 1.5f, 11.5f);
-    //public Vector3 freePosition = new Vector3(-35.6f, 0.5f, 9.5f);
     public GameObject currentcolliding;
 
     public GameMaster gameMaster;
@@ -33,15 +32,13 @@ public class Lobster : NetworkComponent, IPlayer
 
     public override void HandleMessage(string flag, string value)
     {
-        //throw new System.NotImplementedException();
+
         if(flag == "PICKUP" && canCollect)
         {
             Treasure treasure = currentcolliding.GetComponent<Treasure>();
             TreasureCollected += treasure.treasureValue;
-            //Debug.Log("Treasure collected: " + TreasureCollected);
             MyCore.NetDestroyObject(currentcolliding.GetComponent<NetworkID>().NetId);
             gameMaster.RemoveItemFromList(currentcolliding);
-            //Debug.Log("Object destroyed on server");
             SendUpdate("MONEY", TreasureCollected.ToString());
         }
 
@@ -93,7 +90,6 @@ public class Lobster : NetworkComponent, IPlayer
             isCaptured = bool.Parse(value);
             if(IsServer)
             {
-                Debug.Log("kill yourself");
                 isCaptured = false;
                 this.transform.position = capturedPosition;
                 StartCoroutine(TankTime());
@@ -101,20 +97,16 @@ public class Lobster : NetworkComponent, IPlayer
             }
             if(IsClient)
             {
-                Debug.Log("Sad");
                 isCaptured = bool.Parse(value);
                 this.transform.position = capturedPosition;
             }
             
-            //this.transform.position = freePosition;
-            //SendUpdate("MONEY", "0");
         }
         if(flag == "FREE")
         {
             if (IsServer)
             {
                 isCaptured = false;
-                //this.transform.position = freePosition;
                 Vector3 CurrentSpawn = SpawnPoints[int.Parse(value)];
                 this.transform.position = CurrentSpawn;
 
@@ -131,7 +123,6 @@ public class Lobster : NetworkComponent, IPlayer
 
     public IEnumerator TankTime()
     {
-        Debug.Log("Timeout Corner");
         while(IsServer)
         {
             yield return new WaitForSeconds(10f);
@@ -148,19 +139,17 @@ public class Lobster : NetworkComponent, IPlayer
 
     public void CapturedTrue()
     {
-        Debug.Log("Please");
         SendCommand("CAUGHT", "true");
     }
 
     public void LobsterCaptured()
     {
-        Debug.Log("Spaghetti");
         SendCommand("CAPTURED", "true"); 
     }
 
     public override void NetworkedStart()
     {
-        //throw new System.NotImplementedException();
+
     }
 
     public override IEnumerator SlowUpdate()
@@ -177,7 +166,6 @@ public class Lobster : NetworkComponent, IPlayer
             if(isCaptured)
             {
                 LobsterCaptured();
-                //SendUpdate("CAPTURED", "true");
             }
 
             foreach (NPM lp in GameObject.FindObjectsOfType<NPM>())
@@ -211,30 +199,6 @@ public class Lobster : NetworkComponent, IPlayer
 
     }
 
-    // public void OnClick(InputAction.CallbackContext context)
-    // {
-    //     if (canCollect)
-    //     {
-
-    //         Debug.Log("Zoinks");
-
-    //         if (context.GetKey(KeyCode.E))
-    //         {
-
-    //             Debug.Log("Press E");
-
-    //             Treasure treasure = currentcolliding.GetComponent<Treasure>();
-    //             TreasureCollected += treasure.treasureValue;
-    //             Debug.Log("Treasure collected: " + TreasureCollected);
-    //             MyCore.NetDestroyObject(currentcolliding.GetComponent<NetworkID>().NetId);
-    //             Debug.Log("Object destroyed on server");
-
-    //         }
-
-    //         //Debug.Log("E key pressed");
-    //         //isPressed = true;
-    //     }
-    // }
     public void OnPickUp(InputAction.CallbackContext context)
     {
         if (context.started && isInsideTrigger)
@@ -243,7 +207,6 @@ public class Lobster : NetworkComponent, IPlayer
             {
                 AudioSource.PlayClipAtPoint(pickupSound, transform.position);
             }
-            Debug.Log("E was pushed");
             SendCommand("PICKUP", "");
         }
         if(context.canceled)
@@ -256,34 +219,10 @@ public class Lobster : NetworkComponent, IPlayer
     void Update()
     {
 
-        // if (canCollect)
-        // {
-
-        //     Debug.Log("Zoinks");
-
-        //     if (Input.GetKey(KeyCode.E))
-        //     {
-
-        //         Debug.Log("Press E");
-
-        //         Treasure treasure = currentcolliding.GetComponent<Treasure>();
-        //         TreasureCollected += treasure.treasureValue;
-        //         Debug.Log("Treasure collected: " + TreasureCollected);
-        //         MyCore.NetDestroyObject(currentcolliding.GetComponent<NetworkID>().NetId);
-        //         Debug.Log("Object destroyed on server");
-
-        //     }
-
-        //     //Debug.Log("E key pressed");
-        //     //isPressed = true;
-        // }
-
     }
 
     private void OnTriggerEnter(Collider c)
     {
-        //MyCore.NetDestroyObject(MyId.NetId);
-        //shouldnt be MyId.NetId but idk how to access other objects' net IDs :(
 
         if (IsServer || IsLocalPlayer)
         {

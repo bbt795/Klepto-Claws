@@ -19,38 +19,28 @@ public class Human : NetworkComponent, IPlayer
     {
         if(flag == "CAPTURE" && canCapture)
         {
-            //Trigger capture animation, figure out how to have human hold lobster/find alt solution, start struggle mechanic
+
             Lobster player = currentColliding.GetComponent<Lobster>();
             player.isCaptured = true;
             player.CapturedTrue();
-            //isCapturing = true;
-
-            //Insert however we want to deal with lobster here
 
         }
 
         if(flag == "TANK" && canTank && isCapturing)
         {
-            //Need to put lobster in tank, remove treasure, and have it replaced on map
-            //Potentially add a check so human can't interact unless already holding a lobster
-            // Lobster player = currentColliding.GetComponent<Lobster>();
-            // capturedTreasure = player.TreasureCollected;
-            // player.TreasureCollected = 0;
-            // isCapturing = false;
 
         }
     }
 
     public override void NetworkedStart()
     {
-        //throw new System.NotImplementedException();
+
     }
 
     public override IEnumerator SlowUpdate()
     {
 
         yield return new WaitForSeconds(0.1f);
-        //throw new System.NotImplementedException();
 
     }
 
@@ -59,7 +49,7 @@ public class Human : NetworkComponent, IPlayer
 
         if (context.started)
         {
-            Debug.Log("Human E Push");
+
             if(currentColliding.tag == "Lobster")
             {
 
@@ -86,14 +76,12 @@ public class Human : NetworkComponent, IPlayer
             if(c.gameObject.tag == "Lobster")
             {
 
-                Debug.Log("Yeet");
                 c.gameObject.transform.GetChild(3).gameObject.SetActive(true);
                 canCapture = true;
 
             } else if(c.gameObject.tag == "Tank" && isCapturing)
             {
 
-                Debug.Log("Yoink");
                 c.gameObject.transform.GetChild(2).gameObject.SetActive(false);
                 canTank = true;
 
@@ -114,14 +102,12 @@ public class Human : NetworkComponent, IPlayer
             if (c.gameObject.tag == "Lobster")
             {
 
-                Debug.Log("Yuh");
                 c.gameObject.transform.GetChild(3).gameObject.SetActive(false);
                 canCapture = false;
 
             }else if (c.gameObject.tag == "Tank")
             {
 
-                Debug.Log("Yaga");
                 c.gameObject.transform.GetChild(2).gameObject.SetActive(false);
                 canTank = false;
 
@@ -145,10 +131,4 @@ public class Human : NetworkComponent, IPlayer
 
     }
 
-    public void Capture()
-    {
-
-
-
-    }
 }
