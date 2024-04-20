@@ -255,10 +255,6 @@ public class GameMaster : NetworkComponent
         if (IsServer && GameRunning)
         {
             MyCore.NotifyGameStart();
-            if(GameObject.FindObjectsOfType<NPM>().Length == 0)
-            {
-                MyCore.UI_Quit();
-            }
 
             SendUpdate("GAMESTART", GameStarted.ToString());
             StartCoroutine(UpdateTimer());
@@ -315,6 +311,11 @@ public class GameMaster : NetworkComponent
         }
         while (IsServer && GameRunning)
         {
+            //Checks if server is empty
+            if(GameObject.FindObjectsOfType<NPM>().Length == 0)
+            {
+                MyCore.UI_Quit();
+            }
 
             //counts every NPM and adds it to the MoneyStolen
             MoneyStolen = 0;
