@@ -254,6 +254,11 @@ public class GameMaster : NetworkComponent
 
         if (IsServer && GameRunning)
         {
+            MyCore.NotifyGameStart();
+            if(GameObject.FindObjectsOfType<NPM>().Length == 0)
+            {
+                MyCore.UI_Quit();
+            }
 
             SendUpdate("GAMESTART", GameStarted.ToString());
             StartCoroutine(UpdateTimer());
