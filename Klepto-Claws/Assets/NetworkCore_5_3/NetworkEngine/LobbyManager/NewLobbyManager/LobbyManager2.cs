@@ -199,6 +199,8 @@ public class LobbyManager2 : NetworkCore
     }
     public IEnumerator SlowDisc()
     {
+        yield return new WaitForSeconds(1);
+        gameCore.UI_StartClient();
         if (IsClient)
         {
             yield return new WaitUntil(() => (gameCore.IsConnected && gameCore.IsClient));

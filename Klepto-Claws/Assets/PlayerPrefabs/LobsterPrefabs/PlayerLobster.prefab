@@ -766,9 +766,11 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 1
+  setVelocitySpeed: 3
   LastMove: {x: 0, y: 0}
   IsFiring: 0
   CanFire: 1
+  isDashing: 0
   GameOver: 0
   Captured: 0
   tauntSound: {fileID: 8300000, guid: fca65e9e64b1b5b4888e60a34db655a6, type: 3}
@@ -979,6 +981,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 41a8328d-80fd-4c14-9330-4687d2215667
     m_ActionName: Player/Taunt[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4863262787635538660}
+        m_TargetAssemblyTypeName: NetworkPlayerController, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d7e02bde-3ca6-415c-a5ad-925713d6aa2e
+    m_ActionName: Player/Dash[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1005,11 +1023,13 @@ MonoBehaviour:
   canCollect: 0
   isCaptured: 0
   capturedPosition: {x: -36, y: 1.5, z: 11.5}
-  freePosition: {x: -35.6, y: 0.5, z: 9.5}
   currentcolliding: {fileID: 0}
   gameMaster: {fileID: 0}
   Value: {fileID: 4423228592050143967}
+  isInsideTrigger: 0
   pickupSound: {fileID: 8300000, guid: e3eb13c52d12dc04f949a355120f56ea, type: 3}
+  SpawnPoints: []
+  CurrentSpawn: {x: 0, y: 0, z: 0}
 --- !u!135 &-3499898506890802643
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -18,10 +18,12 @@ public class NetworkPlayerController : NetworkComponent
 
     public LayerMask collisionMask;
     private float distance = 3f;
+    public float setVelocitySpeed = 3f;
 
     public Vector2 LastMove;
     public bool IsFiring;
     public bool CanFire = true;
+    public bool CanDash = true;
     public bool GameOver = false;
 
     public bool Captured;
@@ -66,6 +68,18 @@ public class NetworkPlayerController : NetworkComponent
                 AudioSource.PlayClipAtPoint(tauntSound, transform.position);
             }
             MyAnime.SetTrigger("Taunt");
+        }
+        if(flag == "DASH" && CanDash)
+        {
+            if(IsServer)
+            {
+                CanDash = false;
+                this.setVelocitySpeed = 5f;
+                Debug.Log(setVelocitySpeed);
+                StartCoroutine(DashTime());
+                SendUpdate("DASH", value);
+            }
+            MyAnime.SetTrigger("Dash");
         }
 
     }
@@ -166,6 +180,15 @@ public class NetworkPlayerController : NetworkComponent
         }
     }
 
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (IsLocalPlayer && context.started)
+        {
+            Debug.Log("Dash key pressed");
+            SendCommand("DASH", "true");
+        }
+    }
+
     public override IEnumerator SlowUpdate()
     {
         yield return new WaitForSeconds(.1f);
@@ -187,7 +210,6 @@ public class NetworkPlayerController : NetworkComponent
 
         if (IsServer)
         {
-            float setVelocitySpeed = 3f;
             if(this.gameObject.tag == "Human")
             {
                 setVelocitySpeed = 3.5f;
@@ -264,6 +286,14 @@ public class NetworkPlayerController : NetworkComponent
         //MyAnime.SetInteger("DIR", 0);
         CanFire = true;
 
+    }
+
+    public IEnumerator DashTime()
+    {
+        yield return new WaitForSeconds(0.2f);
+        this.setVelocitySpeed = 3f;
+        yield return new WaitForSeconds(1f);
+        CanDash = true;
     }
 
 }
