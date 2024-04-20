@@ -57,6 +57,7 @@ public class GameMaster : NetworkComponent
             GameStarted = false;
             GameEnding = true;
             Debug.Log("Game Ending Here");
+            GetPlayerWithHighestMoneyStolen();
             foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
             {
                 //np.transform.GetChild(0).gameObject.SetActive(true);
@@ -64,7 +65,7 @@ public class GameMaster : NetworkComponent
                 np.transform.GetChild(0).GetChild(2).gameObject.SetActive(false);
                 np.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
                 np.transform.GetChild(0).GetChild(1).GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Money Stolen: " + MoneyStolen;
-                if ((StartingMoney * 0.6) < MoneyStolen)
+                if ((StartingMoney * 0.25) < MoneyStolen)
                 {
                     np.transform.GetChild(0).GetChild(1).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().text = "Lobsters!";
                 }
@@ -73,7 +74,7 @@ public class GameMaster : NetworkComponent
                     np.transform.GetChild(0).GetChild(1).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().text = "Human!";
                 }
 
-                np.transform.GetChild(0).GetChild(1).GetChild(4).GetComponentInChildren<TextMeshProUGUI>().text = playerName;
+                np.transform.GetChild(0).GetChild(1).GetChild(4).GetComponentInChildren<TextMeshProUGUI>().text = playerName.ToString() + " with " + maxMoneyStolen;
             }
             
 
@@ -211,7 +212,7 @@ public class GameMaster : NetworkComponent
         SendUpdate("MONEY", MoneyStolen.ToString());
 
         int finalStolen = MoneyStolen;
-        GetPlayerWithHighestMoneyStolen();
+        
         foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
         {
             //np.transform.GetChild(0).gameObject.SetActive(true);
@@ -221,7 +222,7 @@ public class GameMaster : NetworkComponent
             //np.transform.GetChild(0).GetChild(1).GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Money Stolen: " + finalStolen;
             np.UI_Money(finalStolen);
 
-            np.transform.GetChild(0).GetChild(1).GetChild(3).GetComponentInChildren<TextMeshProUGUI>().text = "Winning player " + playerName;
+            np.transform.GetChild(0).GetChild(1).GetChild(3).GetComponentInChildren<TextMeshProUGUI>().text = playerName.ToString() + " with " + maxMoneyStolen;
             Debug.Log("in game end" + playerName);
         }
         SendUpdate("MONEY", MoneyStolen.ToString());
