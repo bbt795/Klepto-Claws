@@ -30,6 +30,9 @@ public class GameMaster : NetworkComponent
 
     List<GameObject> spawnedItems = new List<GameObject>();
 
+    public string playerName;
+    public int maxMoneyStolen = 0;
+
     public override void HandleMessage(string flag, string value)
     {
         if (flag == "GAMESTART")
@@ -69,9 +72,12 @@ public class GameMaster : NetworkComponent
                 {
                     np.transform.GetChild(0).GetChild(1).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().text = "Human!";
                 }
-                
+
+                np.transform.GetChild(0).GetChild(1).GetChild(4).GetComponentInChildren<TextMeshProUGUI>().text = playerName;
             }
-            if(IsServer)
+            
+
+            if (IsServer)
             {
                 StartCoroutine(DisconnectGameServer());
             }
@@ -174,20 +180,6 @@ public class GameMaster : NetworkComponent
         {
             yield return new WaitForSeconds(1f);
             elapsedTime += 1f;
-            //Debug.Log(elapsedTime);
-
-            /*if (TimeRemaining > 0)
-            {
-                TimeRemaining -= 1f;
-            }
-            else if (TimeRemaining < 0)
-            {
-                TimeRemaining = 0;
-            }
-            minutes = Mathf.FloorToInt(TimeRemaining / 60);
-            seconds = Mathf.FloorToInt(TimeRemaining % 60);
-
-            Debug.Log(minutes + ":" + seconds);*/
 
             if (TimeRemaining > 0)
             {
@@ -206,13 +198,6 @@ public class GameMaster : NetworkComponent
                 yield break;
             }
         }
-
-        /*foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
-        {
-            np.transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
-
-            np.transform.GetChild(0).GetChild(2).GetComponentInChildren<TextMeshProUGUI>().text = minutes + ":" + seconds;
-        }*/
     }
 
     public void GameEnd()
@@ -224,7 +209,9 @@ public class GameMaster : NetworkComponent
         SendUpdate("GAMEEND", "true");
         MoneyStolen = 0;
         SendUpdate("MONEY", MoneyStolen.ToString());
+
         int finalStolen = MoneyStolen;
+        GetPlayerWithHighestMoneyStolen();
         foreach (NPM np in GameObject.FindObjectsOfType<NPM>())
         {
             //np.transform.GetChild(0).gameObject.SetActive(true);
@@ -233,7 +220,9 @@ public class GameMaster : NetworkComponent
 
             //np.transform.GetChild(0).GetChild(1).GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = "Money Stolen: " + finalStolen;
             np.UI_Money(finalStolen);
-          
+
+            np.transform.GetChild(0).GetChild(1).GetChild(3).GetComponentInChildren<TextMeshProUGUI>().text = "Winning player " + playerName;
+            Debug.Log("in game end" + playerName);
         }
         SendUpdate("MONEY", MoneyStolen.ToString());
         Debug.Log("Money on GameMaster: " + MoneyStolen);
@@ -428,6 +417,37 @@ public class GameMaster : NetworkComponent
         {
             spawnedItems.Remove(item);
         }
+    }
+
+    public void GetPlayerWithHighestMoneyStolen()
+    {
+        /*string playerName = "";
+        int maxMoneyStolen = 0; // Initialize to zero, assuming MoneyCollected cannot be negative*/
+
+        foreach (Lobster lp in GameObject.FindObjectsOfType<Lobster>())
+        {
+            this.maxMoneyStolen = Mathf.Max(maxMoneyStolen, lp.TreasureCollected);
+            Debug.Log(maxMoneyStolen);
+
+            if (lp.TreasureCollected == maxMoneyStolen)
+            {
+                playerName = lp.PlayerName.text;
+                Debug.Log(playerName);
+                
+            }
+        }
+
+        /*foreach (Lobster lp in GameObject.FindObjectsOfType<Lobster>())
+        {
+            if (lp.TreasureCollected == maxMoneyStolen)
+            {
+                playerName = lp.PlayerName;
+                Debug.Log(playerName);
+                break; // Exit the loop once the player with the highest MoneyCollected is found
+            }
+        }*/
+
+        //return playerName;
     }
 
 }
